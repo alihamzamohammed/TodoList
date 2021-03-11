@@ -13,7 +13,7 @@ public class Title {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "titleID")
+    @Column(name = "title_id")
     private int id;
 
     @Column(name = "title")
