@@ -14,7 +14,8 @@ public class Content {
     @Column(name = "content_id")
     private int id;
 
-    
+    @Column(name = "content")
+    private String todoContent;
 
     public int getId() {
         return this.id;
@@ -23,5 +24,14 @@ public class Content {
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getTodoContent() {
+        return this.todoContent;
+    }
+
+    public void setTodoContent(String todoContent) {
+        this.todoContent = todoContent;
+    }
+
 
 }
