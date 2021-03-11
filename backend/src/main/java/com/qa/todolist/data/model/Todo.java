@@ -31,4 +31,8 @@ public class Todo {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Title title;
 
+    @OneToOne(mappedBy = "todo", fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Content content;
+
 }
