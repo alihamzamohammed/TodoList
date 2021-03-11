@@ -14,4 +14,14 @@ public class Content {
     @Column(name = "content_id")
     private int id;
 
+    
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 }
