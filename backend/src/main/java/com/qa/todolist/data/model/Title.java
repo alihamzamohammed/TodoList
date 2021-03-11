@@ -4,9 +4,12 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Title {
@@ -18,6 +21,10 @@ public class Title {
 
     @Column(name = "title")
     private String todoTitle;
+
+    @OneToOne(targetEntity = Todo.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_todo_id")
+    private Todo todo;
 
     public int getId() {
         return this.id;
