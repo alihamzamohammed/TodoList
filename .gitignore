@@ -30,6 +30,6 @@ backend/!**/src/main/**/build/
 backend/!**/src/test/**/build/
 
 ### VS Code ###
-backend/.vscode/
+.vscode/
 backend/mvnw
 backend/mvnw.cmd
