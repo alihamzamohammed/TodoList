@@ -58,4 +58,8 @@ public class TodoService {
         }
     }
 
+    public TodoDTO createTodo(Todo todo) {
+        return todoMapper.mapToDTO(todoRepository.save(todo));
+    }
+
 }
