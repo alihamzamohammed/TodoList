@@ -2,6 +2,7 @@ package com.qa.todolist.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.qa.todolist.data.model.Todo;
 import com.qa.todolist.data.repository.ContentRepository;
@@ -46,6 +47,15 @@ public class TodoService {
         List<TodoDTO> todoDTOs = new ArrayList<>();
         todos.forEach(todo -> todoDTOs.add(todoMapper.mapToDTO(todo)));
         return todoDTOs;
+    }
+
+    public TodoDTO readById(int id) {
+        Optional<Todo> todo = todoRepository.findById(id);
+        if (todo.isPresent()) {
+            return todoMapper.mapToDTO(todo.get());
+        } else {
+            throw new Exception; //TODO: Change this to custom exception
+        }
     }
 
 }
