@@ -12,6 +12,8 @@ public class TodoDTO {
 
     private ContentDTO content;
 
+    public TodoDTO() {
+    }
 
     @Autowired
     public TodoDTO(int id, TitleDTO title, ContentDTO content) {
