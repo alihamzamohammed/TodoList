@@ -54,7 +54,7 @@ public class TodoService {
         if (todo.isPresent()) {
             return todoMapper.mapToDTO(todo.get());
         } else {
-            throw new Exception; //TODO: Change this to custom exception
+            throw new Exception(); //TODO: Change this to custom exception
         }
     }
 
@@ -71,8 +71,17 @@ public class TodoService {
             todoToUpdate.setContent(todo.getContent());
             return todoMapper.mapToDTO(todoRepository.save(todoToUpdate));
         } else {
-            throw new Exception;
+            throw new Exception(); //TODO: Change this to custom exception
         }
+    }
+
+    public Boolean deleteTodo(int id) {
+        if (todoRepository.existsById(id)) {
+            todoRepository.deleteById(id);
+        } else {
+            throw new Exception(); //TODO: Change this to custom exception
+        }
+        return !todoRepository.existsById(id);
     }
 
 }
