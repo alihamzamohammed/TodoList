@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.OnDelete;
@@ -30,12 +31,15 @@ public class Todo {
         this.id = id;
     }
 
-    @OneToOne(mappedBy = "todo", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "fk_title_id")
     private Title title;
 
-    @OneToOne(mappedBy = "todo", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @OneToOne(fetch = FetchType.EAGER, 
+        cascade = {CascadeType.ALL})
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "fk_content_id")
     private Content content;
 
     public Todo() {
