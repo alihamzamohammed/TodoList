@@ -2,6 +2,7 @@ package com.qa.todolist.data.model;
 
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,7 +23,7 @@ public class Content {
     @Column(name = "content")
     private String todoContent;
 
-    @OneToOne(targetEntity = Todo.class, fetch = FetchType.LAZY)
+    @OneToOne(targetEntity = Todo.class, fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinColumn(name = "fk_todo_id")
     private Todo todo;
 
