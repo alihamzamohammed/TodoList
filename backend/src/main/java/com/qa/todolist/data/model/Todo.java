@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.OnDelete;
@@ -41,6 +42,11 @@ public class Todo {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "fk_content_id")
     private Content content;
+
+    @ManyToOne(targetEntity = Category.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_category_id")
+    private Category category;
+
 
     public Todo() {
     }
