@@ -35,16 +35,16 @@ public class TodoDTO {
         this.id = id;
     }
 
-    public TitleDTO getTitle() {
-        return this.title;
+    public String getTitle() {
+        return this.title.getTodoTitle();
     }
 
     public void setTitle(TitleDTO title) {
         this.title = title;
     }
 
-    public ContentDTO getContent() {
-        return this.content;
+    public String getContent() {
+        return this.content.getTodoContent();
     }
 
     public void setContent(ContentDTO content) {
@@ -74,6 +74,5 @@ public class TodoDTO {
     public int hashCode() {
         return Objects.hash(title, content);
     }
-
 
 }

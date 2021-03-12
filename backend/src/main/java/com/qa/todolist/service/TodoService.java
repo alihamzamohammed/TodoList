@@ -67,7 +67,6 @@ public class TodoService {
         Optional<Todo> optional = todoRepository.findById(id);
         if (optional.isPresent()) {
             Todo todoToUpdate = optional.get();
-            todoToUpdate.setId(todo.getId());
             todoToUpdate.setTitle(todo.getTitle());
             todoToUpdate.setContent(todo.getContent());
             return todoMapper.mapToDTO(todoRepository.save(todoToUpdate));
