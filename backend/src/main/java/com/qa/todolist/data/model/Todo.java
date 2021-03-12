@@ -2,6 +2,7 @@ package com.qa.todolist.data.model;
 
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -29,11 +30,11 @@ public class Todo {
         this.id = id;
     }
 
-    @OneToOne(mappedBy = "todo", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "todo", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Title title;
 
-    @OneToOne(mappedBy = "todo", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "todo", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Content content;
 
