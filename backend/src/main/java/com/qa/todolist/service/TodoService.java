@@ -62,4 +62,17 @@ public class TodoService {
         return todoMapper.mapToDTO(todoRepository.save(todo));
     }
 
+    public TodoDTO updateTodo(int id, Todo todo) {
+        Optional<Todo> optional = todoRepository.findById(id);
+        if (optional.isPresent()) {
+            Todo todoToUpdate = optional.get();
+            todoToUpdate.setId(todo.getId());
+            todoToUpdate.setTitle(todo.getTitle());
+            todoToUpdate.setContent(todo.getContent());
+            return todoMapper.mapToDTO(todoRepository.save(todoToUpdate));
+        } else {
+            throw new Exception;
+        }
+    }
+
 }
