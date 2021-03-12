@@ -9,6 +9,7 @@ import com.qa.todolist.data.repository.ContentRepository;
 import com.qa.todolist.data.repository.TitleRepository;
 import com.qa.todolist.data.repository.TodoRepository;
 import com.qa.todolist.dto.TodoDTO;
+import com.qa.todolist.exceptions.TodoItemNotFoundException;
 import com.qa.todolist.mapper.ContentMapper;
 import com.qa.todolist.mapper.TitleMapper;
 import com.qa.todolist.mapper.TodoMapper;
@@ -54,7 +55,7 @@ public class TodoService {
         if (todo.isPresent()) {
             return todoMapper.mapToDTO(todo.get());
         } else {
-            throw new Exception(); //TODO: Change this to custom exception
+            throw new TodoItemNotFoundException();
         }
     }
 
@@ -71,7 +72,7 @@ public class TodoService {
             todoToUpdate.setContent(todo.getContent());
             return todoMapper.mapToDTO(todoRepository.save(todoToUpdate));
         } else {
-            throw new Exception(); //TODO: Change this to custom exception
+            throw new TodoItemNotFoundException();
         }
     }
 
@@ -79,7 +80,7 @@ public class TodoService {
         if (todoRepository.existsById(id)) {
             todoRepository.deleteById(id);
         } else {
-            throw new Exception(); //TODO: Change this to custom exception
+            throw new TodoItemNotFoundException();
         }
         return !todoRepository.existsById(id);
     }
