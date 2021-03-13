@@ -3,15 +3,13 @@ package com.qa.todolist.dto;
 import java.util.List;
 import java.util.Objects;
 
-import com.qa.todolist.data.model.Todo;
-
 public class CategoryDTO {
     
     private int id;
 
     private String name;
 
-    private List<Todo> todos;
+    private List<TodoDTO> todos;
 
 
     public CategoryDTO() {
@@ -38,11 +36,11 @@ public class CategoryDTO {
         this.name = name;
     }
 
-    public List<Todo> getTodos() {
+    public List<TodoDTO> getTodos() {
         return this.todos;
     }
 
-    public void setTodos(List<Todo> todos) {
+    public void setTodos(List<TodoDTO> todos) {
         this.todos = todos;
     }
 

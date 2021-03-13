@@ -27,7 +27,7 @@ public class Category {
     @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "category", fetch = FetchType.EAGER, orphanRemoval = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Todo> todos;
 
@@ -35,13 +35,15 @@ public class Category {
     public Category() {
     }
 
-    public Category(int id, String name) {
+    public Category(int id, String name, List<Todo> todos) {
         this.id = id;
         this.name = name;
+        this.todos = todos;
     }
 
-    public Category(String name) {
+    public Category(String name, List<Todo> todos) {
         this.name = name;
+        this.todos = todos;
     }
 
     public int getId() {
@@ -68,6 +70,7 @@ public class Category {
         this.todos = todos;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -92,6 +95,6 @@ public class Category {
             ", todos='" + getTodos() + "'" +
             "}";
     }
-
+    
     
 }
