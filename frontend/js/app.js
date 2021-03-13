@@ -12,7 +12,7 @@ let createCategory = (category) => {
     let p = document.createElement("p");
     p.textContent = `Category ID: ${category.id}, Category Name: ${category.name}`;
     div.appendChild(p);
-    document.body.appendChild(div);
+    //document.body.appendChild(div);
 }
 
 let fetchCategories = () => {

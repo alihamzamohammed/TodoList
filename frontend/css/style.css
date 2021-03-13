@@ -8,3 +8,26 @@ body {
   text-align: center;
   padding: 1.5%;
 }
+
+.card-text {
+  font-size: 12pt;
+  font-weight: 400;
+}
+
+.card-title {
+  padding: 1%;
+}
+
+.category {
+  text-align: center;
+  border: 1px solid #ddd;
+  padding: 1.5%;
+  margin: 1%;
+  padding-bottom: 2%;
+}
+
+.category-title {
+  text-align: left;
+  padding: 1%;
+  padding-bottom: 2%;
+}
