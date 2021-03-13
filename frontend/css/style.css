@@ -1,0 +1,10 @@
+body {
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 1%;
+}
+
+.title {
+  text-align: center;
+  padding: 1.5%;
+}
