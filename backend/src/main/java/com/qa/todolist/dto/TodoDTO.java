@@ -74,5 +74,4 @@ public class TodoDTO {
     public int hashCode() {
         return Objects.hash(title, content);
     }
-
 }
