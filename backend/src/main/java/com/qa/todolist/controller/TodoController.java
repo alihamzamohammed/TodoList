@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,8 +24,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/todo")
+@CrossOrigin
 public class TodoController {
-    
+
     private TodoService todoService;
 
     @Autowired
@@ -55,7 +57,7 @@ public class TodoController {
     @PutMapping("/{id}")
     public ResponseEntity<TodoDTO> updateTodo(@PathVariable("id") int id, @RequestBody Todo todo) {
         TodoDTO updatedTodo = todoService.updateTodo(id, todo);
-        return new ResponseEntity<>(updatedTodo, HttpStatus.OK);      
+        return new ResponseEntity<>(updatedTodo, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
