@@ -7,15 +7,17 @@ import java.util.Optional;
 import com.qa.todolist.data.model.Category;
 import com.qa.todolist.data.repository.CategoryRepository;
 import com.qa.todolist.dto.CategoryDTO;
+import com.qa.todolist.exceptions.CategoryAlreadyExistsException;
 import com.qa.todolist.exceptions.CategoryNotFoundExcepion;
 import com.qa.todolist.mapper.CategoryMapper;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CategoryService {
-    
+
     private CategoryRepository categoryRepository;
     private CategoryMapper categoryMapper;
 
@@ -42,7 +44,11 @@ public class CategoryService {
     }
 
     public CategoryDTO createCategory(Category category) {
-        return categoryMapper.mapToDTO(categoryRepository.save(category));
+        if (!categoryRepository.existsByName(category.getName())) {
+            return categoryMapper.mapToDTO(categoryRepository.save(category));
+        } else {
+            throw new CategoryAlreadyExistsException();
+        }
     }
 
     public CategoryDTO updateCategory(int id, Category category) {
