@@ -2,45 +2,52 @@ package com.qa.todolist.dto;
 
 import java.util.Objects;
 
-import com.qa.todolist.data.model.Content;
-import com.qa.todolist.data.model.Title;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class TodoDTO {
     
     private int id;
 
-    private Title title;
+    private TitleDTO title;
 
-    private Content content;
-
+    private ContentDTO content;
 
     public TodoDTO() {
     }
 
-    public TodoDTO(int id, Title title, Content content) {
+    @Autowired
+    public TodoDTO(int id, TitleDTO title, ContentDTO content) {
         this.id = id;
         this.title = title;
         this.content = content;
     }
 
-    public TodoDTO(Title title, Content content) {
+    public TodoDTO(TitleDTO title, ContentDTO content) {
         this.title = title;
         this.content = content;
     }
 
-    public Title getTitle() {
-        return this.title;
+    public int getId() {
+        return this.id;
     }
 
-    public void setTitle(Title title) {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return this.title.getTodoTitle();
+    }
+
+    public void setTitle(TitleDTO title) {
         this.title = title;
     }
 
-    public Content getContent() {
-        return this.content;
+    public String getContent() {
+        return this.content.getTodoContent();
     }
 
-    public void setContent(Content content) {
+    public void setContent(ContentDTO content) {
         this.content = content;
     }
 
@@ -67,6 +74,4 @@ public class TodoDTO {
     public int hashCode() {
         return Objects.hash(title, content);
     }
-
-
 }

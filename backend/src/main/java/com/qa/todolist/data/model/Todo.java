@@ -2,12 +2,15 @@ package com.qa.todolist.data.model;
 
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.OnDelete;
@@ -29,25 +32,41 @@ public class Todo {
         this.id = id;
     }
 
-    @OneToOne(mappedBy = "todo", fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "fk_title_id")
     private Title title;
 
-    @OneToOne(mappedBy = "todo", fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER, 
+        cascade = {CascadeType.ALL})
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "fk_content_id")
     private Content content;
+
+    @ManyToOne(targetEntity = Category.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "fk_category_id")
+    private Category category;
+
 
     public Todo() {
     }
 
-    public Todo(int id, Title title, Content content) {
+    public Todo(int id, Title title, Content content, Category category) {
         this.id = id;
         this.title = title;
         this.content = content;
+        this.category = category;
     }
-    public Todo(Title title, Content content) {
+
+    // public Todo(Title title, Content content) {
+    //     this.title = title;
+    //     this.content = content;
+    // }
+
+    public Todo(Title title, Content content, Category category) {
         this.title = title;
         this.content = content;
+        this.category = category;
     }
 
 
@@ -68,14 +87,14 @@ public class Todo {
     }
 
 
-    @Override
-    public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", title='" + getTitle() + "'" +
-            ", content='" + getContent() + "'" +
-            "}";
+    public Category getCategory() {
+        return this.category;
     }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -85,12 +104,23 @@ public class Todo {
             return false;
         }
         Todo todo = (Todo) o;
-        return id == todo.id && Objects.equals(title, todo.title) && Objects.equals(content, todo.content);
+        return id == todo.id && Objects.equals(title, todo.title) && Objects.equals(content, todo.content) && Objects.equals(category, todo.category);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, content);
+        return Objects.hash(id, title, content, category);
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", title='" + getTitle() + "'" +
+            ", content='" + getContent() + "'" +
+            ", category='" + getCategory() + "'" +
+            "}";
+    }
+    
 
 }
