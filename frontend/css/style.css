@@ -19,15 +19,24 @@ body {
 }
 
 .category {
-  text-align: center;
   border: 1px solid #ddd;
   padding: 1.5%;
   margin: 1%;
   padding-bottom: 2%;
 }
 
-.category-title {
-  text-align: left;
+.category-header {
   padding: 1%;
   padding-bottom: 2%;
+}
+
+.category-name {
+  vertical-align: middle;
+}
+
+.category-id {
+  color: #777;
+  font-size: 17pt;
+  text-align: left;
+  vertical-align: middle;
 }
