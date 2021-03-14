@@ -2,8 +2,43 @@
 
 // For dev purposes, fetch link will be hardcoded into functions
 
-let createItem = (categoryId, item) => {
+let createItem = (items) => {
+    let rows = [];
+    for (let i = 0; i < items.length; i += 3) {
+        let group = items.slice(i, i + 3);
+        let row = document.createElement("div");
+        row.className = "row";
+        console.log(`Group: ${group}`)
 
+        for (let item in group) {
+            let col = document.createElement("div");
+            col.classList.add("col");
+            col.classList.add("todo-container");
+
+            let card = document.createElement("div");
+            card.classList.add("card");
+            card.classList.add("todo-item");
+
+            let cardBody = document.createElement("div");
+            cardBody.className = "card-body";
+
+            let h4 = document.createElement("h4");
+            h4.className = "card-title";
+            h4.textContent = `${group[item].title}`
+
+            let p = document.createElement("p");
+            p.className = "card-text";
+            p.textContent = `${group[item].content}`;
+
+            cardBody.appendChild(h4);
+            cardBody.appendChild(p);
+            card.appendChild(cardBody);
+            col.appendChild(card);
+            row.appendChild(col);
+        }
+        rows.push(row);
+    }
+    return rows;
 };
 
 
@@ -36,6 +71,10 @@ let createCategory = (category) => {
     categoryHeader.appendChild(categoryName);
     categoryDiv.appendChild(categoryHeader);
 
+    console.log(category.todos);
+    createItem(category.todos).forEach(row => categoryDiv.appendChild(row));
+
+
     document.querySelector("#container").appendChild(categoryDiv);
 }
 
@@ -52,4 +91,4 @@ let fetchCategories = () => {
         })
 };
 
-//fetchCategories();
+fetchCategories();

@@ -44,6 +44,7 @@ body {
 .todo-item {
   margin: 0 auto;
   text-align: center;
+  width: 18rem;
 }
 
 .todo-container {
