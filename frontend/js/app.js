@@ -30,8 +30,15 @@ let createItem = (items) => {
             p.className = "card-text";
             p.textContent = `${group[item].content}`;
 
+            let pId = document.createElement("p");
+            pId.classList.add("card-subtitle");
+            pId.classList.add("text-muted");
+            pId.classList.add("todo-id");
+            pId.textContent = `ID: ${group[item].id}`
+
             cardBody.appendChild(h4);
             cardBody.appendChild(p);
+            cardBody.appendChild(pId);
             card.appendChild(cardBody);
             col.appendChild(card);
             row.appendChild(col);
