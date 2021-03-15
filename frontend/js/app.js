@@ -85,17 +85,24 @@ let createCategory = (category) => {
     document.querySelector("#container").appendChild(categoryDiv);
 }
 
-let fetchCategories = () => {
-    let request = fetch("http://localhost:8080/category")
-        .then(response => {
-            if (response.status != 200) {
-                console.error(`Error: Status code ${response.status}\n${response.json}`);
-                return;
-            }
-            response.json().then(data => {
-                data.forEach(category => { createCategory(category) });
-            })
-        })
+let fetchCategories = async () => {
+    const response = await fetch("http://localhost:8080/category")
+
+    if (response.status != 200) {
+        console.error(`Error: Status code ${response.status}\n${response.json}`);
+        return;
+    }
+    let data = await response.json()
+    data.forEach(category => { createCategory(category) });
+    return true;
 };
 
-//fetchCategories();
+fetchCategories().then((response) => {
+    if (response) {
+        document.querySelector(".container").style.display = "block";
+        document.querySelector(".spinner").style.display = "none";
+        console.log("async function run");
+    } else {
+        console.log("Items not added");
+    }
+}).catch(err => console.error(err));
