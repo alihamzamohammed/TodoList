@@ -98,4 +98,4 @@ let fetchCategories = () => {
         })
 };
 
-fetchCategories();
+//fetchCategories();
