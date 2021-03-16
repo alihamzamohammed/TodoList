@@ -33,7 +33,7 @@ let updateCategory = () => {
             p.style.display = "block";
         } else {
             console.log(response);
-            p.textContent = `Category successfully updated! Item ID: ${response.id}`;
+            p.textContent = `Category successfully updated! Category ID: ${response.id}`;
             p.style.color = "green";
             p.style.display = "block";
         }
@@ -67,7 +67,7 @@ let deleteCategory = () => {
             p.style.display = "block";
         } else {
             console.log(response);
-            p.textContent = `Category successfully deleted! Item ID: ${response.id}`;
+            p.textContent = `Category successfully deleted!`;
             p.style.color = "green";
             p.style.display = "block";
             document.querySelector("#name-input").setAttribute("disabled", "true");
