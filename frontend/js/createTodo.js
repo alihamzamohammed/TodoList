@@ -17,7 +17,7 @@ let postRequest = async (titleInput, contentInput) => {
     });
     if (response.status != 201) {
         console.error(`Error: Status code ${response.status}\n${response.json}`);
-        return;
+        return response.status;
     }
     let data = await response.json();
     return data;
@@ -26,11 +26,23 @@ let postRequest = async (titleInput, contentInput) => {
 let createTodo = () => {
     let title = document.querySelector("#title-input").value;
     let content = document.querySelector("#content-input").value;
+    let p = document.querySelector("#response");
     postRequest(title, content).then((response) => {
-        console.log("done");
-        let p = document.querySelector("#response");
-        p.textContent = `To-Do Item successfully created! Item ID: ${response.id}`;
+        if (Number.isInteger(response)) {
+            p.textContent = `There was a problem creating your item: Response code ${response}. Check that the server URL is correct, and that the server is running.`;
+            p.style.color = "red";
+            p.style.display = "block";
+        } else {
+            console.log(response);
+            p.textContent = `To-Do Item successfully created! Item ID: ${response.id}`;
+            p.style.color = "green";
+            p.style.display = "block";
+        }
+    }).catch(err => {
+        console.error(err);
+        p.textContent = `There was a problem creating your item: ${err}. Check that the server URL is correct, and that the server is running.`;
+        p.style.color = "red";
         p.style.display = "block";
-    })
+    });
 
 }
