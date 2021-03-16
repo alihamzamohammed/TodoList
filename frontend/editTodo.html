@@ -47,6 +47,9 @@
     <div>
         <form class="text-input">
             <div class="mb-3">
+                <span id="id">ID: </span>
+            </div>
+            <div class="mb-3">
                 <label for="title-input" class="form-label">Title</label>
                 <input type="text" class="form-control" id="title-input" placeholder="Enter title">
             </div>
@@ -62,7 +65,7 @@
                 </select>
             </div>
             <div class="mb-3 gx-5">
-                <button type="button" class="btn btn-success form-button" onclick="createTodo();">Update</button>
+                <button type="button" class="btn btn-success form-button" onclick="updateTodo();">Update</button>
                 <button type="reset" class="btn btn-primary form-button" onclick="resetCounter();">Reset</button>
                 <button type="button" class="btn btn-warning form-button" onclick="navToHome();">Cancel</button>
                 <button type="button" class="btn btn-danger form-button" onclick="">Delete</button>
