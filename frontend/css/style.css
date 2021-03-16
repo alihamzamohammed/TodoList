@@ -90,3 +90,7 @@ body {
 .form-button {
   margin-right: 1%;
 }
+
+.response {
+  display: none;
+}
