@@ -13,7 +13,9 @@ let postRequest = async (titleInput, contentInput, categoryInput) => {
         body: JSON.stringify({
             title: titleInput,
             content: contentInput,
-            category: categoryInput
+            category: {
+                id: categoryInput
+            }
         })
     });
     if (response.status != 201) {
@@ -27,7 +29,7 @@ let postRequest = async (titleInput, contentInput, categoryInput) => {
 let createTodo = () => {
     let title = document.querySelector("#title-input").value;
     let content = document.querySelector("#content-input").value;
-    let category = document.querySelector("#category-selection").value;
+    let category = parseInt(document.querySelector("#category-selection").value);
     let p = document.querySelector("#response");
     postRequest(title, content, category).then((response) => {
         if (Number.isInteger(response)) {

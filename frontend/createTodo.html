@@ -44,7 +44,7 @@
     <h1 class="display-3 title">Create To-Do Item:</h1>
 
     <div>
-        <form action="" class="text-input">
+        <form class="text-input">
             <div class="mb-3">
                 <label for="title-input" class="form-label">Title</label>
                 <input type="text" class="form-control" id="title-input" placeholder="Enter title">
@@ -56,11 +56,10 @@
             <div class="mb-3">
                 <label for="category-selection" class="form-label">Select category</label>
                 <select class="form-select" aria-label="Category" id="category-selection">
-                    <option selected>No category</option>
                 </select>
             </div>
             <div class="mb-3 gx-5">
-                <button type="submit" class="btn btn-success form-button" onclick="createTodo();">Create</button>
+                <button type="button" class="btn btn-success form-button" onclick="createTodo();">Create</button>
                 <button type="reset" class="btn btn-primary form-button">Reset</button>
                 <button type="button" class="btn btn-danger form-button" onclick="navToHome();">Discard</button>
             </div>
