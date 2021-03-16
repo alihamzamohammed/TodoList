@@ -56,7 +56,15 @@
                     maxlength="250"></textarea>
                 <span class="pull-right label label-default" id="count_message">250 of 250 characters left</span>
             </div>
+            <div class="mb-3">
+                <label for="category-selection" class="form-label">Select category</label>
+                <select class="form-select" aria-label="Category" id="category-selection">
+                </select>
+            </div>
+            <div class="mb-3 gx-5">
+                <button type="button" class="btn btn-success form-button" onclick="createTodo();">Update</button>
 
+            </div>
         </form>
         <div>
             <p id="response" class="response"></p>
