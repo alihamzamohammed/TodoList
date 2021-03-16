@@ -69,6 +69,7 @@ public class TodoService {
             Todo todoToUpdate = optional.get();
             todoToUpdate.setTitle(todo.getTitle());
             todoToUpdate.setContent(todo.getContent());
+            todoToUpdate.setCategory(todo.getCategory());
             return todoMapper.mapToDTO(todoRepository.save(todoToUpdate));
         } else {
             throw new TodoItemNotFoundException();
