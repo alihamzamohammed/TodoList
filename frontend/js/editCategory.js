@@ -1,11 +1,11 @@
 'use strict';
 
 let navToHome = () => {
-    window.location.href = "/frontend/index.html";
+    window.location.href = "index.html";
 }
 
 let postRequest = async (id, nameInput) => {
-    const response = await fetch(`http://localhost:8080/category/${id}`, {
+    const response = await fetch(`${getBackendLink()}/category/${id}`, {
         method: "PUT",
         headers: {
             'Content-Type': 'application/json'
@@ -46,7 +46,7 @@ let updateCategory = () => {
 }
 
 let deleteRequest = async (id) => {
-    const response = await fetch(`http://localhost:8080/category/${id}`, {
+    const response = await fetch(`${getBackendLink()}/category/${id}`, {
         method: "DELETE"
     });
     if (response.status != 200) {
@@ -81,7 +81,7 @@ let deleteCategory = () => {
 }
 
 let readTodo = async (id) => {
-    const response = await fetch(`http://localhost:8080/category/${id}`);
+    const response = await fetch(`${getBackendLink()}/category/${id}`);
     if (response.status != 200) {
         console.error(`Error: Status code ${response.status}\n${response.json}`);
         return;
