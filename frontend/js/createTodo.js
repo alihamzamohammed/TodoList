@@ -46,3 +46,21 @@ let createTodo = () => {
     });
 
 }
+
+let getCategories = async () => {
+    const response = await fetch("http://localhost:8080/category");
+    if (response.status != 200) {
+        console.error(`Error: Status code ${response.status}\n${response.json}`);
+    }
+    let data = await response.json();
+    return data;
+}
+
+getCategories().then(data => {
+    data.forEach(category => {
+        let option = document.createElement("option");
+        option.value = category.id;
+        option.text = category.name;
+        document.querySelector("#category-selection").appendChild(option);
+    })
+})
