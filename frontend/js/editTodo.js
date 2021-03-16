@@ -151,6 +151,6 @@ readTodo(urlParams.get("id")).then(data => {
     document.querySelector("#edit-form").style.display = "block";
 }).catch(err => {
     document.querySelector("#spinner-actual").style.display = "none";
-    document.querySelector("#load-status").innerHTML = "Please select a to-do item to edit from the home page<br>This item doesn't exist, or none was specified";
+    document.querySelector("#load-status").innerHTML = "This item doesn't exist, or none was specified<br>Please select a to-do item to edit from the home page";
     console.error(err)
 });
