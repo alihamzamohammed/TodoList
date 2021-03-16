@@ -96,3 +96,7 @@ body {
   display: none;
   text-align: center;
 }
+
+.edit-form {
+  display: none;
+}

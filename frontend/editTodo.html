@@ -44,7 +44,12 @@
     </nav>
     <h1 class="display-3 title">Edit To-Do Item:</h1>
 
-    <div>
+    <div class="spinner" id="spinner">
+        <div class="spinner-border" id="spinner-actual" role="status"></div>
+        <p id="load-status">Loading...</p>
+    </div>
+
+    <div id="edit-form" class="edit-form" style="display: none;">
         <form class="text-input">
             <div class="mb-3">
                 <span id="id">ID: </span>

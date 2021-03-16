@@ -146,7 +146,11 @@ readTodo(urlParams.get("id")).then(data => {
     document.querySelector("#id").textContent = `ID: ${data.id}`;
     document.querySelector("#title-input").value = data.title;
     document.querySelector("#content-input").value = data.content;
-
-    console.log(data);
     document.querySelector("#category-selection").value = `${data.category}`
-}).catch(err => console.error(err));
+    document.querySelector("#spinner").style.display = "none";
+    document.querySelector("#edit-form").style.display = "block";
+}).catch(err => {
+    document.querySelector("#spinner-actual").style.display = "none";
+    document.querySelector("#load-status").innerHTML = "Please select a to-do item to edit from the home page<br>This item doesn't exist, or none was specified";
+    console.error(err)
+});
