@@ -64,11 +64,9 @@ let deleteRequest = async (id) => {
 }
 
 let deleteTodo = () => {
-    let title = document.querySelector("#title-input").value;
-    let content = document.querySelector("#content-input").value;
-    let category = parseInt(document.querySelector("#category-selection").value);
+    let id = parseInt(document.querySelector("#id").textContent.replace("ID: ", ""));
     let p = document.querySelector("#response");
-    postRequest(title, content, category).then((response) => {
+    deleteRequest(id).then((response) => {
         if (Number.isInteger(response)) {
             p.textContent = `There was a problem deleting your item: Response code ${response}. Check that the server URL is correct, and that the server is running.`;
             p.style.color = "red";
