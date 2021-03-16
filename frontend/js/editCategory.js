@@ -45,3 +45,37 @@ let updateCategory = () => {
     });
 }
 
+let deleteRequest = async (id) => {
+    const response = await fetch(`http://localhost:8080/category/${id}`, {
+        method: "DELETE"
+    });
+    if (response.status != 200) {
+        console.error(`Error: Status code ${response.status}\n${response.json}`);
+        return response.status;
+    }
+    let data = await response.json();
+    return data;
+}
+
+let deleteCategory = () => {
+    let id = parseInt(document.querySelector("#id").textContent.replace("ID: ", ""));
+    let p = document.querySelector("#response");
+    deleteRequest(id).then((response) => {
+        if (Number.isInteger(response)) {
+            p.textContent = `There was a problem deleting your category: Response code ${response}. Check that the server URL is correct, and that the server is running.`;
+            p.style.color = "red";
+            p.style.display = "block";
+        } else {
+            console.log(response);
+            p.textContent = `Category successfully deleted! Item ID: ${response.id}`;
+            p.style.color = "green";
+            p.style.display = "block";
+            document.querySelector("#name-input").setAttribute("disabled", "true");
+        }
+    }).catch(err => {
+        console.error(err);
+        p.textContent = `There was a problem deleting your category: ${err}. Check that the server URL is correct, and that the server is running.`;
+        p.style.color = "red";
+        p.style.display = "block";
+    });
+}
