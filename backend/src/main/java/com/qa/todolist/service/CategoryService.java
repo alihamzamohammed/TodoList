@@ -11,7 +11,6 @@ import com.qa.todolist.exceptions.CategoryAlreadyExistsException;
 import com.qa.todolist.exceptions.CategoryNotFoundExcepion;
 import com.qa.todolist.mapper.CategoryMapper;
 
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,11 +51,13 @@ public class CategoryService {
     }
 
     public CategoryDTO updateCategory(int id, Category category) {
+        if (categoryRepository.existsByName(category.getName())) {
+            throw new CategoryAlreadyExistsException();
+        }
         Optional<Category> optional = categoryRepository.findById(id);
         if (optional.isPresent()) {
             Category catToUpdate = optional.get();
             catToUpdate.setName(category.getName());
-            catToUpdate.setTodos(category.getTodos());
             return categoryMapper.mapToDTO(categoryRepository.save(catToUpdate));
         } else {
             throw new CategoryNotFoundExcepion();

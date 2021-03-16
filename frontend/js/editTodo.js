@@ -73,7 +73,7 @@ let deleteTodo = () => {
             p.style.display = "block";
         } else {
             console.log(response);
-            p.textContent = `To-Do Item successfully deleted! Item ID: ${response.id}`;
+            p.textContent = `To-Do Item successfully deleted!`;
             p.style.color = "green";
             p.style.display = "block";
             document.querySelector("#title-input").setAttribute("disabled", "true");

@@ -55,6 +55,10 @@ let createItem = (items) => {
 
 
 let createCategory = (category) => {
+    let a = document.createElement("a");
+    a.className = "link-text";
+    a.href = `editCategory.html?id=${category.id}`
+
     let categoryDiv = document.createElement("div");
     categoryDiv.classList.add("category");
     categoryDiv.id = `category-${category.id}`;
@@ -83,11 +87,10 @@ let createCategory = (category) => {
     categoryHeader.appendChild(categoryName);
     categoryDiv.appendChild(categoryHeader);
 
-    console.log(category.todos);
     createItem(category.todos).forEach(row => categoryDiv.appendChild(row));
 
-
-    document.querySelector("#container").appendChild(categoryDiv);
+    a.appendChild(categoryDiv);
+    document.querySelector("#container").appendChild(a);
 }
 
 let fetchCategories = async () => {
