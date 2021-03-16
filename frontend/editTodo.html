@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css" />
+    <title>To-Do List</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">To-Do</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Create
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item active" aria-current="page" href="createTodo.html">Create
+                                    item</a></li>
+                            <li><a class="dropdown-item" href="#">Create category</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Settings</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h1 class="display-3 title">Edit To-Do Item:</h1>
+
+    <div>
+        <form class="text-input">
+            <div class="mb-3">
+                <label for="title-input" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title-input" placeholder="Enter title">
+            </div>
+            <div class="mb-3">
+                <label for="content-input" class="form-label">Content</label>
+                <textarea class="form-control" id="content-input" rows="3" placeholder="Enter content"
+                    maxlength="250"></textarea>
+                <span class="pull-right label label-default" id="count_message">250 of 250 characters left</span>
+            </div>
+            <div class="mb-3">
+                <label for="category-selection" class="form-label">Select category</label>
+                <select class="form-select" aria-label="Category" id="category-selection">
+                </select>
+            </div>
+            <div class="mb-3 gx-5">
+                <button type="button" class="btn btn-success form-button" onclick="createTodo();">Update</button>
+                <button type="reset" class="btn btn-primary form-button" onclick="resetCounter();">Reset</button>
+                <button type="button" class="btn btn-danger form-button" onclick="navToHome();">Discard</button>
+            </div>
+        </form>
+        <div>
+            <p id="response" class="response"></p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+    <script src="js/editTodo.js"></script>
+
+</body>
+
+</html>
