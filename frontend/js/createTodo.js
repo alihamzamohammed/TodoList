@@ -68,3 +68,26 @@ getCategories().then(data => {
         document.querySelector("#category-selection").appendChild(option);
     })
 })
+
+let resetCounter = () => {
+    document.querySelector("#count_message").textContent = "250 of 250 characters left";
+}
+
+let trackChange = (e) => {
+    const target = e.currentTarget;
+    const maxLength = target.getAttribute("maxlength");
+    const currentLength = target.value.length;
+    let text = document.querySelector("#count_message");
+
+    if (currentLength >= maxLength) {
+        console.log("You have reached the maximum number of characters.");
+        text.textContent = "Max characters reached";
+    }
+
+    text.textContent = `${maxLength - currentLength} of ${maxLength} characters left`;
+};
+
+const textarea = document.querySelector("#content-input");
+
+textarea.addEventListener("change", event => trackChange(event));
+textarea.addEventListener("input", event => trackChange(event));
