@@ -1,0 +1,107 @@
+body {
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 1%;
+}
+
+.container {
+  display: none;
+}
+
+.title {
+  text-align: center;
+  padding: 1.5%;
+}
+
+.card-text {
+  font-size: 12pt;
+  font-weight: 400;
+  margin-bottom: 0;
+  white-space: pre-line;
+}
+
+.card-title {
+  padding: 1%;
+}
+
+.category {
+  border: 1px solid #ddd;
+  padding: 1.5%;
+  margin: 1%;
+  padding-bottom: 2%;
+}
+
+.category-header {
+  padding: 1%;
+  padding-bottom: 2%;
+}
+
+.category-name {
+  vertical-align: middle;
+}
+
+.category-id {
+  color: #777;
+  font-size: 17pt;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.todo-item {
+  margin: 0 auto;
+  text-align: center;
+  width: 18rem;
+}
+
+.todo-container {
+  padding: 1.25%;
+}
+
+.todo-id {
+  text-align: left;
+  z-index: 100;
+  position: absolute;
+  top: 15px;
+  left: 12px;
+}
+
+.spinner {
+  margin: 5%;
+  text-align: center;
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+.spinner p {
+  padding: 1%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 19pt;
+  font-weight: 350;
+}
+
+.text-input {
+  width: 75%;
+  margin: 0 auto;
+  padding: 2%;
+}
+
+.form-button {
+  margin-right: 1%;
+}
+
+.response {
+  display: none;
+  text-align: center;
+}
+
+.edit-form {
+  display: none;
+}
+
+.link-text {
+  color: inherit;
+  text-decoration: inherit;
+}

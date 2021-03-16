@@ -7,6 +7,7 @@ import java.util.Optional;
 import com.qa.todolist.data.model.Category;
 import com.qa.todolist.data.repository.CategoryRepository;
 import com.qa.todolist.dto.CategoryDTO;
+import com.qa.todolist.exceptions.CategoryAlreadyExistsException;
 import com.qa.todolist.exceptions.CategoryNotFoundExcepion;
 import com.qa.todolist.mapper.CategoryMapper;
 
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CategoryService {
-    
+
     private CategoryRepository categoryRepository;
     private CategoryMapper categoryMapper;
 
@@ -42,15 +43,21 @@ public class CategoryService {
     }
 
     public CategoryDTO createCategory(Category category) {
-        return categoryMapper.mapToDTO(categoryRepository.save(category));
+        if (!categoryRepository.existsByName(category.getName())) {
+            return categoryMapper.mapToDTO(categoryRepository.save(category));
+        } else {
+            throw new CategoryAlreadyExistsException();
+        }
     }
 
     public CategoryDTO updateCategory(int id, Category category) {
+        if (categoryRepository.existsByName(category.getName())) {
+            throw new CategoryAlreadyExistsException();
+        }
         Optional<Category> optional = categoryRepository.findById(id);
         if (optional.isPresent()) {
             Category catToUpdate = optional.get();
             catToUpdate.setName(category.getName());
-            catToUpdate.setTodos(category.getTodos());
             return categoryMapper.mapToDTO(categoryRepository.save(catToUpdate));
         } else {
             throw new CategoryNotFoundExcepion();
