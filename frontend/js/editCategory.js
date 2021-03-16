@@ -79,3 +79,27 @@ let deleteCategory = () => {
         p.style.display = "block";
     });
 }
+
+let readTodo = async (id) => {
+    const response = await fetch(`http://localhost:8080/category/${id}`);
+    if (response.status != 200) {
+        console.error(`Error: Status code ${response.status}\n${response.json}`);
+        return;
+    }
+    let data = await response.json();
+    return data;
+};
+
+let queryString = window.location.search;
+let urlParams = new URLSearchParams(queryString);
+
+readTodo(urlParams.get("id")).then(data => {
+    document.querySelector("#id").textContent = `ID: ${data.id}`;
+    document.querySelector("#name-input").value = data.name;
+    document.querySelector("#spinner").style.display = "none";
+    document.querySelector("#edit-form").style.display = "block";
+}).catch(err => {
+    document.querySelector("#spinner-actual").style.display = "none";
+    document.querySelector("#load-status").innerHTML = "This category doesn't exist, or none was specified<br>Please select a category to edit from the home page";
+    console.error(err)
+});
