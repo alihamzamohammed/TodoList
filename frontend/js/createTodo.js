@@ -15,7 +15,7 @@ let postRequest = async (titleInput, contentInput) => {
             content: contentInput
         })
     });
-    if (response.status != 200) {
+    if (response.status != 201) {
         console.error(`Error: Status code ${response.status}\n${response.json}`);
         return;
     }
