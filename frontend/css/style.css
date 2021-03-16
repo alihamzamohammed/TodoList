@@ -17,6 +17,7 @@ body {
   font-size: 12pt;
   font-weight: 400;
   margin-bottom: 0;
+  white-space: pre-line;
 }
 
 .card-title {
