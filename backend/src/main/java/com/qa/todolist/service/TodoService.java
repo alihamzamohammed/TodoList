@@ -50,10 +50,10 @@ public class TodoService {
         return todoDTOs;
     }
 
-    public TodoDTO readById(int id) {
+    public Todo readById(int id) {
         Optional<Todo> todo = todoRepository.findById(id);
         if (todo.isPresent()) {
-            return todoMapper.mapToDTO(todo.get());
+            return todo.get();
         } else {
             throw new TodoItemNotFoundException();
         }
