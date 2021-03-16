@@ -31,7 +31,11 @@ let createTodo = () => {
     let p = document.querySelector("#response");
     postRequest(title).then((response) => {
         if (Number.isInteger(response)) {
-            p.textContent = `There was a problem creating your category: Response code ${response}. Check that the server URL is correct, and that the server is running.`;
+            if (response == 409) {
+                p.textContent = `This category already exists.`;
+            } else {
+                p.textContent = `There was a problem creating your category: Response code ${response}. Check that the server URL is correct, and that the server is running.`;
+            }
             p.style.color = "red";
             p.style.display = "block";
         } else {
