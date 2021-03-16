@@ -4,7 +4,7 @@ let navToHome = () => {
     window.location.href = "/frontend/index.html";
 }
 
-let postRequest = async (titleInput, contentInput) => {
+let postRequest = async (titleInput, contentInput, categoryInput) => {
     const response = await fetch("http://localhost:8080/todo", {
         method: "POST",
         headers: {
@@ -12,7 +12,8 @@ let postRequest = async (titleInput, contentInput) => {
         },
         body: JSON.stringify({
             title: titleInput,
-            content: contentInput
+            content: contentInput,
+            category: categoryInput
         })
     });
     if (response.status != 201) {
@@ -26,8 +27,9 @@ let postRequest = async (titleInput, contentInput) => {
 let createTodo = () => {
     let title = document.querySelector("#title-input").value;
     let content = document.querySelector("#content-input").value;
+    let category = document.querySelector("#category-selection").value;
     let p = document.querySelector("#response");
-    postRequest(title, content).then((response) => {
+    postRequest(title, content, category).then((response) => {
         if (Number.isInteger(response)) {
             p.textContent = `There was a problem creating your item: Response code ${response}. Check that the server URL is correct, and that the server is running.`;
             p.style.color = "red";
