@@ -1,11 +1,11 @@
 'use strict';
 
 let navToHome = () => {
-    window.location.href = "/frontend/index.html";
+    window.location.href = "index.html";
 }
 
 let postRequest = async (id, titleInput, contentInput, categoryInput) => {
-    const response = await fetch(`http://localhost:8080/todo/${id}`, {
+    const response = await fetch(`${getBackendLink()}/todo/${id}`, {
         method: "PUT",
         headers: {
             'Content-Type': 'application/json'
@@ -52,7 +52,7 @@ let updateTodo = () => {
 }
 
 let deleteRequest = async (id) => {
-    const response = await fetch(`http://localhost:8080/todo/${id}`, {
+    const response = await fetch(`${getBackendLink()}/todo/${id}`, {
         method: "DELETE"
     });
     if (response.status != 200) {
@@ -89,7 +89,7 @@ let deleteTodo = () => {
 }
 
 let getCategories = async () => {
-    const response = await fetch("http://localhost:8080/category");
+    const response = await fetch(`${getBackendLink()}/category`);
     if (response.status != 200) {
         console.error(`Error: Status code ${response.status}\n${response.json}`);
     }
@@ -130,7 +130,7 @@ textarea.addEventListener("change", event => trackChange(event));
 textarea.addEventListener("input", event => trackChange(event));
 
 let readTodo = async (id) => {
-    const response = await fetch(`http://localhost:8080/todo/${id}`);
+    const response = await fetch(`${getBackendLink()}/todo/${id}`);
     if (response.status != 200) {
         console.error(`Error: Status code ${response.status}\n${response.json}`);
         return;

@@ -1,11 +1,11 @@
 'use strict';
 
 let navToHome = () => {
-    window.location.href = "/frontend/index.html";
+    window.location.href = "index.html";
 }
 
 let postRequest = async (titleInput, contentInput, categoryInput) => {
-    const response = await fetch("http://localhost:8080/todo", {
+    const response = await fetch(`${getBackendLink()}/todo`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -52,7 +52,7 @@ let createTodo = () => {
 }
 
 let getCategories = async () => {
-    const response = await fetch("http://localhost:8080/category");
+    const response = await fetch(`${getBackendLink()}/category`);
     if (response.status != 200) {
         console.error(`Error: Status code ${response.status}\n${response.json}`);
     }

@@ -1,11 +1,11 @@
 'use strict';
 
 let navToHome = () => {
-    window.location.href = "/frontend/index.html";
+    window.location.href = "index.html";
 }
 
 let postRequest = async (titleInput) => {
-    const response = await fetch("http://localhost:8080/category", {
+    const response = await fetch(`${getBackendLink()}/category`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
