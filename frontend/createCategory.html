@@ -30,9 +30,9 @@
                             Create
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item active" aria-current="page" href="createTodo.html">Create
-                                    item</a></li>
-                            <li><a class="dropdown-item" href="#">Create category</a></li>
+                            <li><a class="dropdown-item" href="createTodo.html">Create item</a></li>
+                            <li><a class="dropdown-item active" aria-current="page" href="#">Create
+                                    category</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -42,24 +42,13 @@
             </div>
         </div>
     </nav>
-    <h1 class="display-3 title">Create To-Do Item:</h1>
+    <h1 class="display-3 title">Create Category Item:</h1>
 
     <div>
         <form class="text-input">
             <div class="mb-3">
                 <label for="title-input" class="form-label">Title</label>
                 <input type="text" class="form-control" id="title-input" placeholder="Enter title">
-            </div>
-            <div class="mb-3">
-                <label for="content-input" class="form-label">Content</label>
-                <textarea class="form-control" id="content-input" rows="3" placeholder="Enter content"
-                    maxlength="250"></textarea>
-                <span class="pull-right label label-default" id="count_message">250 of 250 characters left</span>
-            </div>
-            <div class="mb-3">
-                <label for="category-selection" class="form-label">Select category</label>
-                <select class="form-select" aria-label="Category" id="category-selection">
-                </select>
             </div>
             <div class="mb-3 gx-5">
                 <button type="button" class="btn btn-success form-button" onclick="createTodo();">Create</button>
@@ -75,7 +64,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
         crossorigin="anonymous"></script>
-    <script src="js/createTodo.js"></script>
+    <script src="js/createCategory.js"></script>
 
 </body>
 
