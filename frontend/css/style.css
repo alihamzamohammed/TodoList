@@ -100,3 +100,8 @@ body {
 .edit-form {
   display: none;
 }
+
+.link-text {
+  color: inherit;
+  text-decoration: inherit;
+}
