@@ -7,6 +7,9 @@ let navToHome = () => {
 let postRequest = async (titleInput, contentInput) => {
     const response = await fetch("http://localhost:8080/todo", {
         method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify({
             title: titleInput,
             content: contentInput
