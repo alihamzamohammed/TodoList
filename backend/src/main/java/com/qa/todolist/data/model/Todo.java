@@ -32,13 +32,12 @@ public class Todo {
         this.id = id;
     }
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @OneToOne(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "fk_title_id")
     private Title title;
 
-    @OneToOne(fetch = FetchType.EAGER, 
-        cascade = {CascadeType.ALL})
+    @OneToOne(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "fk_content_id")
     private Content content;
@@ -46,7 +45,6 @@ public class Todo {
     @ManyToOne(targetEntity = Category.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_category_id")
     private Category category;
-
 
     public Todo() {
     }
@@ -58,17 +56,11 @@ public class Todo {
         this.category = category;
     }
 
-    // public Todo(Title title, Content content) {
-    //     this.title = title;
-    //     this.content = content;
-    // }
-
     public Todo(Title title, Content content, Category category) {
         this.title = title;
         this.content = content;
         this.category = category;
     }
-
 
     public Title getTitle() {
         return this.title;
@@ -86,7 +78,6 @@ public class Todo {
         this.content = content;
     }
 
-
     public Category getCategory() {
         return this.category;
     }
@@ -94,7 +85,6 @@ public class Todo {
     public void setCategory(Category category) {
         this.category = category;
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -104,7 +94,8 @@ public class Todo {
             return false;
         }
         Todo todo = (Todo) o;
-        return id == todo.id && Objects.equals(title, todo.title) && Objects.equals(content, todo.content) && Objects.equals(category, todo.category);
+        return id == todo.id && Objects.equals(title, todo.title) && Objects.equals(content, todo.content)
+                && Objects.equals(category, todo.category);
     }
 
     @Override
@@ -114,13 +105,8 @@ public class Todo {
 
     @Override
     public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", title='" + getTitle() + "'" +
-            ", content='" + getContent() + "'" +
-            ", category='" + getCategory() + "'" +
-            "}";
+        return "{" + " id='" + getId() + "'" + ", title='" + getTitle() + "'" + ", content='" + getContent() + "'"
+                + ", category='" + getCategory() + "'" + "}";
     }
-    
 
 }

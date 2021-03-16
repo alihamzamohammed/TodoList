@@ -19,6 +19,10 @@ let createItem = (items) => {
             card.classList.add("card");
             card.classList.add("todo-item");
 
+            let a = document.createElement("a");
+            a.className = "link-text";
+            a.href = `editTodo.html?id=${group[item].id}`
+
             let cardBody = document.createElement("div");
             cardBody.className = "card-body";
 
@@ -39,7 +43,8 @@ let createItem = (items) => {
             cardBody.appendChild(h4);
             cardBody.appendChild(p);
             cardBody.appendChild(pId);
-            card.appendChild(cardBody);
+            a.appendChild(cardBody);
+            card.appendChild(a);
             col.appendChild(card);
             row.appendChild(col);
         }
@@ -105,4 +110,8 @@ fetchCategories().then((response) => {
     } else {
         console.log("Items not added");
     }
-}).catch(err => console.error(err));
+}).catch(err => {
+    document.querySelector("#spinner-actual").style.display = "none";
+    document.querySelector("#load-status").innerHTML = `The server couldn't be accessed. Make sure the link is correct in settings, and that the server is running.<br>Error: ${err}`;
+    console.error(err);
+});

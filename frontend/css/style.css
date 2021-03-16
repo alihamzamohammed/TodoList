@@ -96,3 +96,12 @@ body {
   display: none;
   text-align: center;
 }
+
+.edit-form {
+  display: none;
+}
+
+.link-text {
+  color: inherit;
+  text-decoration: inherit;
+}
