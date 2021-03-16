@@ -2,15 +2,27 @@ package com.qa.todolist.dto;
 
 import java.util.Objects;
 
+import com.qa.todolist.data.model.Category;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class TodoDTO {
-    
+
     private int id;
 
     private TitleDTO title;
 
     private ContentDTO content;
+
+    private Category category;
+
+    public Integer getCategory() {
+        return this.category.getId();
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
     public TodoDTO() {
     }
@@ -53,10 +65,7 @@ public class TodoDTO {
 
     @Override
     public String toString() {
-        return "{" +
-            " title='" + getTitle() + "'" +
-            ", content='" + getContent() + "'" +
-            "}";
+        return "{" + " title='" + getTitle() + "'" + ", content='" + getContent() + "'" + "}";
     }
 
     @Override
