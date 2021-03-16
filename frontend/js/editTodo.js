@@ -5,7 +5,7 @@ let navToHome = () => {
 }
 
 let postRequest = async (id, titleInput, contentInput, categoryInput) => {
-    const response = await fetch(`http://localhost:8080/todo${id}`, {
+    const response = await fetch(`http://localhost:8080/todo/${id}`, {
         method: "PUT",
         headers: {
             'Content-Type': 'application/json'
@@ -18,7 +18,7 @@ let postRequest = async (id, titleInput, contentInput, categoryInput) => {
             }
         })
     });
-    if (response.status != 201) {
+    if (response.status != 200) {
         console.error(`Error: Status code ${response.status}\n${response.json}`);
         return response.status;
     }
@@ -30,8 +30,9 @@ let updateTodo = () => {
     let title = document.querySelector("#title-input").value;
     let content = document.querySelector("#content-input").value;
     let category = parseInt(document.querySelector("#category-selection").value);
+    let id = parseInt(document.querySelector("#id").textContent.replace("ID: ", ""));
     let p = document.querySelector("#response");
-    postRequest(title, content, category).then((response) => {
+    postRequest(id, title, content, category).then((response) => {
         if (Number.isInteger(response)) {
             p.textContent = `There was a problem updating your item: Response code ${response}. Check that the server URL is correct, and that the server is running.`;
             p.style.color = "red";
