@@ -24,8 +24,8 @@ let postRequest = async (titleInput, contentInput) => {
 }
 
 let createTodo = () => {
-    let title = document.querySelector("#title-input").textContent;
-    let content = document.querySelector("#content-input").textContent;
+    let title = document.querySelector("#title-input").value;
+    let content = document.querySelector("#content-input").value;
     postRequest(title, content).then((response) => {
         console.log("done");
         let p = document.querySelector("#response");
