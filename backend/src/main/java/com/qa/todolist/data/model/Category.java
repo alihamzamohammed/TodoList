@@ -49,6 +49,11 @@ public class Category {
         this.name = name;
     }
 
+    public Category(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public int getId() {
         return this.id;
     }
@@ -81,12 +86,12 @@ public class Category {
             return false;
         }
         Category category = (Category) o;
-        return id == category.id && Objects.equals(name, category.name) && Objects.equals(todos, category.todos);
+        return Objects.equals(name, category.name) && Objects.equals(todos, category.todos);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, todos);
+        return Objects.hash(name, todos);
     }
 
     @Override
