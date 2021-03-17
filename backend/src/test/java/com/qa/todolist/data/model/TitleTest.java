@@ -13,7 +13,7 @@ class TitleTest {
 
     @BeforeEach
     void setup() {
-        title = new Title("Testing");
+        title = new Title(1, "Testing");
     }
 
     @Test
@@ -23,15 +23,17 @@ class TitleTest {
 
     @Test
     void titleTest() {
-        assertThat(title).isNotNull().isInstanceOf(Title.class);
-        assertThat(title.getTodoTitle()).isEqualTo("Testing");
+        Title title1 = new Title("Testing");
+        assertThat(title1).isNotNull().isInstanceOf(Title.class);
+        assertThat(title1.getTodoTitle()).isEqualTo("Testing");
     }
 
     @Test
     void titleWithIdTest() {
-        assertThat(title).isNotNull().isInstanceOf(Title.class);
-        assertThat(title.getTodoTitle()).isEqualTo("Testing");
-        assertThat(title.getId()).isEqualTo(1);
+        Title title1 = new Title(1, "Testing");
+        assertThat(title1).isNotNull().isInstanceOf(Title.class);
+        assertThat(title1.getTodoTitle()).isEqualTo("Testing");
+        assertThat(title1.getId()).isEqualTo(1);
     }
 
     @Test
@@ -65,7 +67,8 @@ class TitleTest {
 
     @Test
     void toStringTest() {
-        String toStringReturn = "{" + " todoTitle='" + "Testing" + "'" + "}";
-        assertThat(title).hasToString(toStringReturn);
+        Title title1 = new Title(1, "test");
+        String toStringReturn = "{" + " id='" + "1" + "'" + ", todoTitle='" + "test" + "'" + "}";
+        assertThat(title1).hasToString(toStringReturn);
     }
 }

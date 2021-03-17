@@ -15,33 +15,37 @@ class TodoTest {
     static Todo todo;
 
     @BeforeEach
-    static void setup() {
+    void setup() {
         title = new Title("Testing");
         content = new Content("Testing");
         category = new Category("Testing");
-        todo = new Todo(title, content, category);
+        todo = new Todo(1, title, content, category);
     }
 
     @Test
     void testEquals() {
-        EqualsVerifier.simple().forClass(Todo.class).verify();
+        EqualsVerifier.simple().forClass(Todo.class).withPrefabValues(Title.class, new Title("1"), new Title("2"))
+                .withPrefabValues(Content.class, new Content("1"), new Content("2"))
+                .withPrefabValues(Category.class, new Category("1"), new Category("2")).verify();
     }
 
     @Test
     void todoTest() {
-        assertThat(todo).isNotNull().isInstanceOf(Todo.class);
-        assertThat(todo.getTitle()).isEqualTo(title);
-        assertThat(todo.getContent()).isEqualTo(content);
-        assertThat(todo.getCategory()).isEqualTo(category);
+        Todo todo1 = new Todo(title, content, category);
+        assertThat(todo1).isNotNull().isInstanceOf(Todo.class);
+        assertThat(todo1.getTitle()).isEqualTo(title);
+        assertThat(todo1.getContent()).isEqualTo(content);
+        assertThat(todo1.getCategory()).isEqualTo(category);
     }
 
     @Test
     void todoWithIdTest() {
-        assertThat(todo).isNotNull().isInstanceOf(Todo.class);
-        assertThat(todo.getTitle()).isEqualTo(title);
-        assertThat(todo.getContent()).isEqualTo(content);
-        assertThat(todo.getCategory()).isEqualTo(category);
-        assertThat(todo.getId()).isEqualTo(1);
+        Todo todo1 = new Todo(1, title, content, category);
+        assertThat(todo1).isNotNull().isInstanceOf(Todo.class);
+        assertThat(todo1.getTitle()).isEqualTo(title);
+        assertThat(todo1.getContent()).isEqualTo(content);
+        assertThat(todo1.getCategory()).isEqualTo(category);
+        assertThat(todo1.getId()).isEqualTo(1);
     }
 
     @Test
@@ -100,8 +104,8 @@ class TodoTest {
 
     @Test
     void toStringTest() {
-        assertThat(todo).hasToString("{" + " id='" + "1" + "'" + ", title='" + "Testing" + "'" + ", content='"
-                + "Testing" + "'" + ", category='" + "Testing" + "'" + "}");
+        assertThat(todo).hasToString("{" + " id='" + "1" + "'" + ", title='" + title.toString() + "'" + ", content='"
+                + content.toString() + "'" + ", category='" + category.toString() + "'" + "}");
     }
 
 }

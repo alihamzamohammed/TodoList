@@ -94,13 +94,13 @@ public class Todo {
             return false;
         }
         Todo todo = (Todo) o;
-        return id == todo.id && Objects.equals(title, todo.title) && Objects.equals(content, todo.content)
+        return Objects.equals(title, todo.title) && Objects.equals(content, todo.content)
                 && Objects.equals(category, todo.category);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, content, category);
+        return Objects.hash(title, content, category);
     }
 
     @Override

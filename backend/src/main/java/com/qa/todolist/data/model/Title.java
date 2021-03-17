@@ -19,7 +19,6 @@ public class Title {
     @Column(name = "title")
     private String todoTitle;
 
-
     public int getId() {
         return this.id;
     }
@@ -44,17 +43,13 @@ public class Title {
         this.todoTitle = todoTitle;
     }
 
-
-
     public Title(String todoTitle) {
         this.todoTitle = todoTitle;
     }
 
     @Override
     public String toString() {
-        return "{" +
-            " todoTitle='" + getTodoTitle() + "'" +
-            "}";
+        return "{" + " id='" + getId() + "'" + ", todoTitle='" + getTodoTitle() + "'" + "}";
     }
 
     @Override
@@ -72,6 +67,5 @@ public class Title {
     public int hashCode() {
         return Objects.hashCode(todoTitle);
     }
-
 
 }

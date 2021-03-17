@@ -12,7 +12,7 @@ class ContentTest {
 
     @BeforeEach
     void setup() {
-        content = new Content("Testing");
+        content = new Content(1, "Testing");
     }
 
     @Test
@@ -22,15 +22,17 @@ class ContentTest {
 
     @Test
     void contentTest() {
-        assertThat(content).isNotNull().isInstanceOf(Content.class);
-        assertThat(content.getTodoContent()).isEqualTo("Testing");
+        Content content1 = new Content("Testing");
+        assertThat(content1).isNotNull().isInstanceOf(Content.class);
+        assertThat(content1.getTodoContent()).isEqualTo("Testing");
     }
 
     @Test
     void contentWithIdTest() {
-        assertThat(content).isNotNull().isInstanceOf(Content.class);
-        assertThat(content.getTodoContent()).isEqualTo("Testing");
-        assertThat(content.getId()).isEqualTo(1);
+        Content content1 = new Content(1, "Testing");
+        assertThat(content1).isNotNull().isInstanceOf(Content.class);
+        assertThat(content1.getTodoContent()).isEqualTo("Testing");
+        assertThat(content1.getId()).isEqualTo(1);
     }
 
     @Test
@@ -64,7 +66,8 @@ class ContentTest {
 
     @Test
     void toStringTest() {
-        String toStringReturn = "{" + " todoContent='" + "Testing" + "'" + "}";
-        assertThat(content).hasToString(toStringReturn);
+        Content content1 = new Content(1, "test");
+        String toStringReturn = "{" + " id='" + "1" + "'" + ", todoContent='" + "test" + "'" + "}";
+        assertThat(content1).hasToString(toStringReturn);
     }
 }

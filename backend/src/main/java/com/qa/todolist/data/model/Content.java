@@ -49,10 +49,7 @@ public class Content {
 
     @Override
     public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", todoContent='" + getTodoContent() + "'" +
-            "}";
+        return "{" + " id='" + getId() + "'" + ", todoContent='" + getTodoContent() + "'" + "}";
     }
 
     @Override
@@ -63,12 +60,12 @@ public class Content {
             return false;
         }
         Content content = (Content) o;
-        return id == content.id && Objects.equals(todoContent, content.todoContent);
+        return Objects.equals(todoContent, content.todoContent);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, todoContent);
+        return Objects.hash(todoContent);
     }
 
 }
