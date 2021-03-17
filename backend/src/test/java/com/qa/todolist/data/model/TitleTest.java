@@ -61,7 +61,6 @@ class TitleTest {
         Title title1 = new Title("test");
         Title title2 = new Title("test");
         assertThat(title1).hasSameHashCodeAs(title2);
-        assertTrue(title1.equals(title2) && title2.equals(title1));
     }
 
     @Test
