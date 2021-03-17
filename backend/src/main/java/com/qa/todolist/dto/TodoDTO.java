@@ -45,6 +45,14 @@ public class TodoDTO {
         this.category = category;
     }
 
+    public TodoDTO(int id, TitleDTO title, ContentDTO content, Category category) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.category = category;
+
+    }
+
     public int getId() {
         return this.id;
     }
@@ -82,11 +90,13 @@ public class TodoDTO {
             return false;
         }
         TodoDTO todoDTO = (TodoDTO) o;
-        return Objects.equals(title, todoDTO.title) && Objects.equals(content, todoDTO.content);
+        return id == todoDTO.id && Objects.equals(title, todoDTO.title) && Objects.equals(content, todoDTO.content)
+                && Objects.equals(category, todoDTO.category);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, content);
+        return Objects.hash(id, title, content, category);
     }
+
 }
