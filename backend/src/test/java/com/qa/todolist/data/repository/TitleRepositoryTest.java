@@ -44,7 +44,7 @@ class TitleRepositoryTest {
 
     @Test
     void createTest() {
-        Title title1 = new Title(2, "hello");
+        Title title1 = new Title(100, "hello");
         assertThat(this.repo.save(title1)).isEqualTo(title1);
     }
 
