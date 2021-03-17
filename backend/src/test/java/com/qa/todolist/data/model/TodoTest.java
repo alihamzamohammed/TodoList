@@ -15,7 +15,7 @@ class TodoTest {
     static Todo todo;
 
     @BeforeEach
-    static void init() {
+    static void setup() {
         title = new Title("Testing");
         content = new Content("Testing");
         category = new Category("Testing");
