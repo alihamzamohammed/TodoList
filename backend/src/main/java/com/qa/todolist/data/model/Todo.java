@@ -42,7 +42,7 @@ public class Todo {
     @JoinColumn(name = "fk_content_id")
     private Content content;
 
-    @ManyToOne(targetEntity = Category.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = Category.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_category_id")
     private Category category;
 
