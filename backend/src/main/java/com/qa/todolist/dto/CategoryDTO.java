@@ -4,15 +4,18 @@ import java.util.List;
 import java.util.Objects;
 
 public class CategoryDTO {
-    
+
     private int id;
 
     private String name;
 
     private List<TodoDTO> todos;
 
-
     public CategoryDTO() {
+    }
+
+    public CategoryDTO(String name) {
+        this.name = name;
     }
 
     public CategoryDTO(int id, String name) {
@@ -52,20 +55,18 @@ public class CategoryDTO {
             return false;
         }
         CategoryDTO categoryDTO = (CategoryDTO) o;
-        return id == categoryDTO.id && Objects.equals(name, categoryDTO.name);
+        return id == categoryDTO.id && Objects.equals(name, categoryDTO.name)
+                && Objects.equals(todos, categoryDTO.todos);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, name, todos);
     }
 
     @Override
     public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", name='" + getName() + "'" +
-            "}";
+        return "{" + " id='" + getId() + "'" + ", name='" + getName() + "'" + "}";
     }
 
 }
