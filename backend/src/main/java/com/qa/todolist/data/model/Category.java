@@ -31,7 +31,6 @@ public class Category {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Todo> todos;
 
-
     public Category() {
     }
 
@@ -44,6 +43,10 @@ public class Category {
     public Category(String name, List<Todo> todos) {
         this.name = name;
         this.todos = todos;
+    }
+
+    public Category(String name) {
+        this.name = name;
     }
 
     public int getId() {
@@ -70,7 +73,6 @@ public class Category {
         this.todos = todos;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -89,12 +91,7 @@ public class Category {
 
     @Override
     public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", name='" + getName() + "'" +
-            ", todos='" + getTodos() + "'" +
-            "}";
+        return "{" + " id='" + getId() + "'" + ", name='" + getName() + "'" + ", todos='" + getTodos() + "'" + "}";
     }
-    
-    
+
 }
