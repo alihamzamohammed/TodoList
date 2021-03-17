@@ -39,6 +39,12 @@ public class TodoDTO {
         this.content = content;
     }
 
+    public TodoDTO(TitleDTO title, ContentDTO content, Category category) {
+        this.title = title;
+        this.content = content;
+        this.category = category;
+    }
+
     public int getId() {
         return this.id;
     }
