@@ -2,28 +2,20 @@ package com.qa.todolist.frontend;
 
 import java.util.concurrent.TimeUnit;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestTemplate;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.aspectj.lang.annotation.After;
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-
-import com.relevantcodes.extentreports.ExtentReports;
-import com.relevantcodes.extentreports.ExtentTest;
-import com.relevantcodes.extentreports.LogStatus;
-
-import org.openqa.selenium.By;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.springframework.test.context.event.annotation.AfterTestClass;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
@@ -98,7 +90,7 @@ class FrontendTest {
         driver.close();
     }
 
-    @AfterClass
+    @AfterAll
     public static void teardown() {
         driver.quit();
         extent.endTest(test);
