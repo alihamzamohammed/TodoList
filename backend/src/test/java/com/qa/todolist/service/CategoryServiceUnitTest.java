@@ -143,11 +143,20 @@ class CategoryServiceUnitTest {
     }
 
     @Test
-    void createNullCategoryTest() {
+    void createDuplicateCategoryTest() {
+        when(categoryRepository.existsByName(Mockito.anyString())).thenReturn(true);
+        assertThrows(CategoryAlreadyExistsException.class, () -> {
+            categoryService.createCategory(validCategory);
+        });
+        verify(categoryRepository, times(1)).existsByName(Mockito.anyString());
+    }
+
+    @Test
+    void updateDuplicateCategoryTest() {
         when(categoryRepository.existsByName(Mockito.anyString())).thenReturn(true);
         int id = validCategory.getId();
         assertThrows(CategoryAlreadyExistsException.class, () -> {
-            categoryService.createCategory(validCategory);
+            categoryService.updateCategory(id, validCategory);
         });
         verify(categoryRepository, times(1)).existsByName(Mockito.anyString());
     }
