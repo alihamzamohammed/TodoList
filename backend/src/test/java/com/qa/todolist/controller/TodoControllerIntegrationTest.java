@@ -1,12 +1,15 @@
 package com.qa.todolist.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qa.todolist.data.model.Category;
-import com.qa.todolist.dto.CategoryDTO;
-import com.qa.todolist.mapper.CategoryMapper;
+import com.qa.todolist.data.model.Content;
+import com.qa.todolist.data.model.Title;
+import com.qa.todolist.data.model.Todo;
+import com.qa.todolist.dto.ContentDTO;
+import com.qa.todolist.dto.TitleDTO;
+import com.qa.todolist.dto.TodoDTO;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +29,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 @Sql(scripts = { "classpath:test-schema.sql",
-        "classpath:test-data-category.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
-class CategoryControllerIntegrationTest {
+        "classpath:test-data-todo.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+class TodoControllerIntegrationTest {
 
     @Autowired
     private MockMvc mvc;
@@ -35,87 +38,94 @@ class CategoryControllerIntegrationTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-    private Category validCategory = new Category(1, "test", List.of());
-    private CategoryDTO validCategoryDTO = new CategoryDTO(1, "test");
+    private Title title = new Title(1, "test");
+    private Content content = new Content(1, "test");
+    private TitleDTO titleDTO = new TitleDTO("test");
+    private ContentDTO contentDTO = new ContentDTO("test");
+    private Category category = new Category(1, "test");
+    private Todo validTodo = new Todo(1, title, content, category);
+    private TodoDTO validTodoDTO = new TodoDTO(1, titleDTO, contentDTO, category);
 
-    private List<Category> validCategories = List.of(validCategory);
-    private List<CategoryDTO> validCategoryDTOs = List.of(validCategoryDTO);
+    private List<Todo> validTodos = List.of(validTodo);
+    private List<TodoDTO> validTodoDTOs = List.of(validTodoDTO);
 
     @Test
-    void createCategoryTest() throws Exception {
-        Category categoryToSave = new Category("test 2");
-        CategoryDTO expectedCategory = new CategoryDTO(2, "test 2");
+    void createTodoTest() throws Exception {
+        Title newTitle = new Title("test2");
+        Content newContent = new Content("test2");
+        TitleDTO newTitleDTO = new TitleDTO("test2");
+        ContentDTO newContentDTO = new ContentDTO("test2");
 
-        MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.POST, "/category");
+        Todo todoToSave = new Todo(newTitle, newContent, category);
+        TodoDTO expectedTodo = new TodoDTO(2, newTitleDTO, newContentDTO, category);
+
+        MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.POST, "/todo");
 
         mockRequest.contentType(MediaType.APPLICATION_JSON);
-        mockRequest.content(objectMapper.writeValueAsString(categoryToSave));
+        mockRequest.content(objectMapper.writeValueAsString(todoToSave));
         mockRequest.accept(MediaType.APPLICATION_JSON);
 
         ResultMatcher statusMatcher = MockMvcResultMatchers.status().isCreated();
 
         ResultMatcher contentMatcher = MockMvcResultMatchers.content()
-                .json(objectMapper.writeValueAsString(expectedCategory));
+                .json(objectMapper.writeValueAsString(expectedTodo));
 
         ResultMatcher headerMatcher = MockMvcResultMatchers.header().string("Location",
-                String.valueOf(expectedCategory.getId()));
+                String.valueOf(expectedTodo.getId()));
 
         mvc.perform(mockRequest).andExpect(statusMatcher).andExpect(contentMatcher).andExpect(headerMatcher);
     }
 
     @Test
     void readAllCategoriesTest() throws Exception {
-        MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET, "/category");
-        validCategoryDTOs.forEach(cat -> cat.setTodos(new ArrayList<>()));
+        MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET, "/todo");
         mockRequest.accept(MediaType.APPLICATION_JSON);
 
         ResultMatcher statusMatcher = MockMvcResultMatchers.status().isOk();
 
         ResultMatcher contentMatcher = MockMvcResultMatchers.content()
-                .json(objectMapper.writeValueAsString(validCategoryDTOs));
+                .json(objectMapper.writeValueAsString(validTodoDTOs));
 
         mvc.perform(mockRequest).andExpect(statusMatcher).andExpect(contentMatcher);
 
     }
 
     @Test
-    void readCategoryByIdTest() throws Exception {
-        MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET, "/category/1");
+    void readTodoByIdTest() throws Exception {
+        MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET, "/todo/1");
         mockRequest.accept(MediaType.APPLICATION_JSON);
-        validCategoryDTOs.forEach(cat -> cat.setTodos(new ArrayList<>()));
 
         ResultMatcher statusMatcher = MockMvcResultMatchers.status().isOk();
 
         ResultMatcher contentMatcher = MockMvcResultMatchers.content()
-                .json(objectMapper.writeValueAsString(validCategoryDTO));
+                .json(objectMapper.writeValueAsString(validTodoDTO));
 
         mvc.perform(mockRequest).andExpect(statusMatcher).andExpect(contentMatcher);
 
     }
 
     @Test
-    void updateCategoryTest() throws Exception {
-        Category categoryToUpdate = new Category("test 2", new ArrayList<>());
-        CategoryDTO expectedCategory = new CategoryDTO(1, "test 2");
-        expectedCategory.setTodos(new ArrayList<>());
+    void updateTodoTest() throws Exception {
+        Todo todoToUpdate = new Todo(title, content, category);
+        TodoDTO expectedTodo = new TodoDTO(1, titleDTO, contentDTO, category);
 
-        MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.PUT, "/category/1");
+        MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.PUT, "/todo/1");
 
         mockRequest.contentType(MediaType.APPLICATION_JSON);
-        mockRequest.content(objectMapper.writeValueAsString(categoryToUpdate));
+        mockRequest.content(objectMapper.writeValueAsString(todoToUpdate));
         mockRequest.accept(MediaType.APPLICATION_JSON);
 
         ResultMatcher statusMatcher = MockMvcResultMatchers.status().isOk();
 
         ResultMatcher contentMatcher = MockMvcResultMatchers.content()
-                .json(objectMapper.writeValueAsString(expectedCategory));
+                .json(objectMapper.writeValueAsString(expectedTodo));
 
         mvc.perform(mockRequest).andExpect(statusMatcher).andExpect(contentMatcher);
     }
 
     @Test
-    void deleteCategoryTest() throws Exception {
-        MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.DELETE, "/category/1");
+    void deleteTodoTest() throws Exception {
+        MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.DELETE, "/todo/1");
 
         mockRequest.contentType(MediaType.TEXT_PLAIN);
 
