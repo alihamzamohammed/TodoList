@@ -48,7 +48,7 @@ class ContentDTOTest {
     @Test
     void toStringTest() {
         ContentDTO contentDTO1 = new ContentDTO("test");
-        String toStringReturn = "{" + " todoContent='" + "test" + "'" + "}";
+        String toStringReturn = "ContentDTO [todoContent=test]";
         assertThat(contentDTO1).hasToString(toStringReturn);
     }
 }

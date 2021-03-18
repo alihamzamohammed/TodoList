@@ -1,7 +1,5 @@
 package com.qa.todolist.data.model;
 
-import java.util.Objects;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -86,46 +84,46 @@ public class Todo {
         this.category = category;
     }
 
-	@Override
-	public String toString() {
-		return "Todo [title=" + title + ", content=" + content + ", category=" + category + "]";
-	}
+    @Override
+    public String toString() {
+        return "Todo [title=" + title + ", content=" + content + ", category=" + category + "]";
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((category == null) ? 0 : category.hashCode());
-		result = prime * result + ((content == null) ? 0 : content.hashCode());
-		result = prime * result + ((title == null) ? 0 : title.hashCode());
-		return result;
-	}
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((category == null) ? 0 : category.hashCode());
+        result = prime * result + ((content == null) ? 0 : content.hashCode());
+        result = prime * result + ((title == null) ? 0 : title.hashCode());
+        return result;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Todo other = (Todo) obj;
-		if (category == null) {
-			if (other.category != null)
-				return false;
-		} else if (!category.equals(other.category))
-			return false;
-		if (content == null) {
-			if (other.content != null)
-				return false;
-		} else if (!content.equals(other.content))
-			return false;
-		if (title == null) {
-			if (other.title != null)
-				return false;
-		} else if (!title.equals(other.title))
-			return false;
-		return true;
-	}
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Todo other = (Todo) obj;
+        if (category == null) {
+            if (other.category != null)
+                return false;
+        } else if (!category.equals(other.category))
+            return false;
+        if (content == null) {
+            if (other.content != null)
+                return false;
+        } else if (!content.equals(other.content))
+            return false;
+        if (title == null) {
+            if (other.title != null)
+                return false;
+        } else if (!title.equals(other.title))
+            return false;
+        return true;
+    }
 
 }

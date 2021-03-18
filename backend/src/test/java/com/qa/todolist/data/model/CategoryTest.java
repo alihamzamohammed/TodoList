@@ -104,7 +104,7 @@ class CategoryTest {
     @Test
     void toStringTest() {
         Category category1 = new Category(1, "test");
-        String toStringReturn = "{" + " id='" + "1" + "'" + ", name='" + "test" + "'" + ", todos='null'}";
+        String toStringReturn = "Category [name=test, todos=null]";
         assertThat(category1).hasToString(toStringReturn);
     }
 

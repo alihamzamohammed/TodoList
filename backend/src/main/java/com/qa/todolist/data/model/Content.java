@@ -1,7 +1,5 @@
 package com.qa.todolist.data.model;
 
-import java.util.Objects;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -47,36 +45,34 @@ public class Content {
         this.todoContent = todoContent;
     }
 
-	@Override
-	public String toString() {
-		return "Content [todoContent=" + todoContent + "]";
-	}
+    @Override
+    public String toString() {
+        return "Content [todoContent=" + todoContent + "]";
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;		result = prime * result + id;
-		result = prime * result + ((todoContent == null) ? 0 : todoContent.hashCode());
-		return result;
-	}
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((todoContent == null) ? 0 : todoContent.hashCode());
+        return result;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Content other = (Content) obj;
-		if (todoContent == null) {
-			if (other.todoContent != null)
-				return false;
-		} else if (!todoContent.equals(other.todoContent))
-			return false;
-		return true;
-	}
-
-    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Content other = (Content) obj;
+        if (todoContent == null) {
+            if (other.todoContent != null)
+                return false;
+        } else if (!todoContent.equals(other.todoContent))
+            return false;
+        return true;
+    }
 
 }

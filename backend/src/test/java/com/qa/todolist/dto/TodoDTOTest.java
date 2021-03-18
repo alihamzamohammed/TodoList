@@ -26,7 +26,7 @@ class TodoDTOTest {
 
     @Test
     void testEquals() {
-        EqualsVerifier.simple().forClass(TodoDTO.class)
+        EqualsVerifier.simple().forClass(TodoDTO.class).withIgnoredFields("id")
                 .withPrefabValues(Category.class, new Category("1"), new Category("2")).verify();
     }
 
@@ -122,7 +122,8 @@ class TodoDTOTest {
 
     @Test
     void toStringTest() {
-        assertThat(todoDTO).hasToString("{" + " title='" + "Testing" + "'" + ", content='" + "Testing" + "'" + "}");
+        assertThat(todoDTO).hasToString(
+                "TodoDTO [title=TitleDTO [todoTitle=Testing], content=ContentDTO [todoContent=Testing], category=Category [name=Testing, todos=null]]");
     }
 
 }

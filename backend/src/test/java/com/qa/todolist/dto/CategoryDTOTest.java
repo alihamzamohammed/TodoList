@@ -23,7 +23,7 @@ class CategoryDTOTest {
 
     @Test
     void testEquals() {
-        EqualsVerifier.simple().forClass(CategoryDTO.class)
+        EqualsVerifier.simple().forClass(CategoryDTO.class).withIgnoredFields("id")
                 .withPrefabValues(Category.class, new Category("1"), new Category("2")).verify();
     }
 
@@ -98,7 +98,7 @@ class CategoryDTOTest {
     @Test
     void toStringTest() {
         CategoryDTO categoryDTO1 = new CategoryDTO(1, "test");
-        String toStringReturn = "{" + " id='" + "1" + "'" + ", name='" + "test" + "'" + "}";
+        String toStringReturn = "CategoryDTO [name=test, todos=null]";
         assertThat(categoryDTO1).hasToString(toStringReturn);
     }
 

@@ -104,8 +104,8 @@ class TodoTest {
 
     @Test
     void toStringTest() {
-        assertThat(todo).hasToString("{" + " id='" + "1" + "'" + ", title='" + title.toString() + "'" + ", content='"
-                + content.toString() + "'" + ", category='" + category.toString() + "'" + "}");
+        assertThat(todo).hasToString("Todo [title=" + title.toString() + ", content=" + content.toString()
+                + ", category=" + category.toString() + "]");
     }
 
 }

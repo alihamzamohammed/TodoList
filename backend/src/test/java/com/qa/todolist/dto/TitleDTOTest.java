@@ -49,7 +49,7 @@ class TitleDTOTest {
     @Test
     void toStringTest() {
         TitleDTO titleDTO1 = new TitleDTO("test");
-        String toStringReturn = "{" + " todoTitle='" + "test" + "'" + "}";
+        String toStringReturn = "TitleDTO [todoTitle=test]";
         assertThat(titleDTO1).hasToString(toStringReturn);
     }
 }

@@ -67,7 +67,7 @@ class ContentTest {
     @Test
     void toStringTest() {
         Content content1 = new Content(1, "test");
-        String toStringReturn = "{" + " id='" + "1" + "'" + ", todoContent='" + "test" + "'" + "}";
+        String toStringReturn = "Content [todoContent=test]";
         assertThat(content1).hasToString(toStringReturn);
     }
 }

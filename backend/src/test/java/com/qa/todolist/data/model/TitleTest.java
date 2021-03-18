@@ -68,7 +68,7 @@ class TitleTest {
     @Test
     void toStringTest() {
         Title title1 = new Title(1, "test");
-        String toStringReturn = "{" + " id='" + "1" + "'" + ", todoTitle='" + "test" + "'" + "}";
+        String toStringReturn = "Title [todoTitle=test]";
         assertThat(title1).hasToString(toStringReturn);
     }
 }
