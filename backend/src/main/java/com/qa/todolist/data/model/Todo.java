@@ -30,12 +30,12 @@ public class Todo {
         this.id = id;
     }
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
+    @OneToOne(fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "fk_title_id")
     private Title title;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
+    @OneToOne(fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "fk_content_id")
     private Content content;
@@ -86,7 +86,7 @@ public class Todo {
 
     @Override
     public String toString() {
-        return "Todo [title=" + title + ", content=" + content + ", category=" + category + "]";
+        return "Todo [title=" + title + ", content=" + content + ", category=" + category.getName() + "]";
     }
 
     @Override

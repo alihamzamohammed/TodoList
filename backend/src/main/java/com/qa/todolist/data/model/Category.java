@@ -27,7 +27,7 @@ public class Category {
     @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "category", fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "category", fetch = FetchType.EAGER, orphanRemoval = true) // , cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Todo> todos;
 

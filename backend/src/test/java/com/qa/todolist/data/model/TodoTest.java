@@ -105,7 +105,7 @@ class TodoTest {
     @Test
     void toStringTest() {
         assertThat(todo).hasToString("Todo [title=" + title.toString() + ", content=" + content.toString()
-                + ", category=" + category.toString() + "]");
+                + ", category=" + category.getName() + "]");
     }
 
 }

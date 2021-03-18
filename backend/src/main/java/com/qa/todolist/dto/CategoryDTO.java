@@ -1,51 +1,50 @@
 package com.qa.todolist.dto;
 
 import java.util.List;
-import java.util.Objects;
 
 public class CategoryDTO {
 
-    private int id;
+	private int id;
 
-    private String name;
+	private String name;
 
-    private List<TodoDTO> todos;
+	private List<TodoDTO> todos;
 
-    public CategoryDTO() {
-    }
+	public CategoryDTO() {
+	}
 
-    public CategoryDTO(String name) {
-        this.name = name;
-    }
+	public CategoryDTO(String name) {
+		this.name = name;
+	}
 
-    public CategoryDTO(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+	public CategoryDTO(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
-    public int getId() {
-        return this.id;
-    }
+	public int getId() {
+		return this.id;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public String getName() {
-        return this.name;
-    }
+	public String getName() {
+		return this.name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public List<TodoDTO> getTodos() {
-        return this.todos;
-    }
+	public List<TodoDTO> getTodos() {
+		return this.todos;
+	}
 
-    public void setTodos(List<TodoDTO> todos) {
-        this.todos = todos;
-    }
+	public void setTodos(List<TodoDTO> todos) {
+		this.todos = todos;
+	}
 
 	@Override
 	public String toString() {
@@ -83,5 +82,4 @@ public class CategoryDTO {
 		return true;
 	}
 
-	
 }

@@ -44,7 +44,6 @@ class CategoryServiceIntegrationTest {
 
         validCategory = categoryRepository.save(validCategory);
         validCategoryDTO = categoryMapper.mapToDTO(validCategory);
-        System.out.println(validCategory);
         categories.add(validCategory);
         categoryDTOs.add(validCategoryDTO);
     }
