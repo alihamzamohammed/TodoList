@@ -51,7 +51,7 @@ class TodoDTOTest {
 
     @Test
     void todoDTOTest() {
-        TodoDTO todoDTO1 = new TodoDTO(1, titleDTO, contentDTO, category);
+        TodoDTO todoDTO1 = new TodoDTO(1, titleDTO, contentDTO);
         assertThat(todoDTO1).isNotNull().isInstanceOf(TodoDTO.class);
         assertThat(todoDTO1.getTitle()).isEqualTo(titleDTO.getTodoTitle());
         assertThat(todoDTO1.getContent()).isEqualTo(contentDTO.getTodoContent());
@@ -60,7 +60,7 @@ class TodoDTOTest {
 
     @Test
     void todoDTOTitleContentTest() {
-        TodoDTO todoDTO1 = new TodoDTO(1, titleDTO, contentDTO, category);
+        TodoDTO todoDTO1 = new TodoDTO(titleDTO, contentDTO);
         assertThat(todoDTO1).isNotNull().isInstanceOf(TodoDTO.class);
         assertThat(todoDTO1.getTitle()).isEqualTo(titleDTO.getTodoTitle());
         assertThat(todoDTO1.getContent()).isEqualTo(contentDTO.getTodoContent());
