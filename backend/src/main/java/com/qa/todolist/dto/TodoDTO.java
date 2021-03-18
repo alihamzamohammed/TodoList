@@ -1,7 +1,5 @@
 package com.qa.todolist.dto;
 
-import java.util.Objects;
-
 import com.qa.todolist.data.model.Category;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +37,20 @@ public class TodoDTO {
         this.content = content;
     }
 
+    public TodoDTO(TitleDTO title, ContentDTO content, Category category) {
+        this.title = title;
+        this.content = content;
+        this.category = category;
+    }
+
+    public TodoDTO(int id, TitleDTO title, ContentDTO content, Category category) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.category = category;
+
+    }
+
     public int getId() {
         return this.id;
     }
@@ -65,22 +77,42 @@ public class TodoDTO {
 
     @Override
     public String toString() {
-        return "{" + " title='" + getTitle() + "'" + ", content='" + getContent() + "'" + "}";
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof TodoDTO)) {
-            return false;
-        }
-        TodoDTO todoDTO = (TodoDTO) o;
-        return Objects.equals(title, todoDTO.title) && Objects.equals(content, todoDTO.content);
+        return "TodoDTO [title=" + title + ", content=" + content + ", category=" + category + "]";
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, content);
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((category == null) ? 0 : category.hashCode());
+        result = prime * result + ((content == null) ? 0 : content.hashCode());
+        result = prime * result + ((title == null) ? 0 : title.hashCode());
+        return result;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!(obj instanceof TodoDTO))
+            return false;
+        TodoDTO other = (TodoDTO) obj;
+        if (category == null) {
+            if (other.category != null)
+                return false;
+        } else if (!category.equals(other.category))
+            return false;
+        if (content == null) {
+            if (other.content != null)
+                return false;
+        } else if (!content.equals(other.content))
+            return false;
+        if (title == null) {
+            if (other.title != null)
+                return false;
+        } else if (!title.equals(other.title))
+            return false;
+        return true;
+    }
+
 }

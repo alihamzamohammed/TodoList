@@ -6,18 +6,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Todo item wasn't found")
-public class CategoryNotFoundExcepion extends EntityNotFoundException {
+public class CategoryNotFoundException extends EntityNotFoundException {
 
     /**
      *
      */
     private static final long serialVersionUID = 6743074521168496360L;
-    
-    public CategoryNotFoundExcepion() {
+
+    public CategoryNotFoundException() {
         super();
     }
 
-    public CategoryNotFoundExcepion(String message) {
+    public CategoryNotFoundException(String message) {
         super(message);
     }
 }
