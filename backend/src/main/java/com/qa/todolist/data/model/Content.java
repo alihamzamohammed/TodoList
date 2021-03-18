@@ -47,25 +47,39 @@ public class Content {
         this.todoContent = todoContent;
     }
 
-    @Override
-    public String toString() {
-        return "{" + " id='" + getId() + "'" + ", todoContent='" + getTodoContent() + "'" + "}";
-    }
+	@Override
+	public String toString() {
+		return "Content [id=" + id + ", todoContent=" + todoContent + "]";
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof Content)) {
-            return false;
-        }
-        Content content = (Content) o;
-        return Objects.equals(todoContent, content.todoContent);
-    }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		result = prime * result + ((todoContent == null) ? 0 : todoContent.hashCode());
+		return result;
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(todoContent);
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Content other = (Content) obj;
+		if (id != other.id)
+			return false;
+		if (todoContent == null) {
+			if (other.todoContent != null)
+				return false;
+		} else if (!todoContent.equals(other.todoContent))
+			return false;
+		return true;
+	}
+
+    
 
 }

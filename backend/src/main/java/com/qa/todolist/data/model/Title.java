@@ -47,25 +47,39 @@ public class Title {
         this.todoTitle = todoTitle;
     }
 
-    @Override
-    public String toString() {
-        return "{" + " id='" + getId() + "'" + ", todoTitle='" + getTodoTitle() + "'" + "}";
-    }
+	@Override
+	public String toString() {
+		return "Title [id=" + id + ", todoTitle=" + todoTitle + "]";
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof Title)) {
-            return false;
-        }
-        Title title = (Title) o;
-        return Objects.equals(todoTitle, title.todoTitle);
-    }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		result = prime * result + ((todoTitle == null) ? 0 : todoTitle.hashCode());
+		return result;
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(todoTitle);
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Title other = (Title) obj;
+		if (id != other.id)
+			return false;
+		if (todoTitle == null) {
+			if (other.todoTitle != null)
+				return false;
+		} else if (!todoTitle.equals(other.todoTitle))
+			return false;
+		return true;
+	}
+
+    
 
 }

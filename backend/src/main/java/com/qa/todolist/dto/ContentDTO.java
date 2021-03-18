@@ -2,7 +2,7 @@ package com.qa.todolist.dto;
 
 import java.util.Objects;
 
-public class ContentDTO { 
+public class ContentDTO {
 
     private String todoContent;
 
@@ -12,7 +12,6 @@ public class ContentDTO {
     public ContentDTO(String todoContent) {
         this.todoContent = todoContent;
     }
-
 
     public String getTodoContent() {
         return this.todoContent;
@@ -24,25 +23,32 @@ public class ContentDTO {
 
     @Override
     public String toString() {
-        return "{" +
-            " todoContent='" + getTodoContent() + "'" +
-            "}";
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof ContentDTO)) {
-            return false;
-        }
-        ContentDTO contentDTO = (ContentDTO) o;
-        return Objects.equals(todoContent, contentDTO.todoContent);
+        return "ContentDTO [todoContent=" + todoContent + "]";
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(todoContent);
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((todoContent == null) ? 0 : todoContent.hashCode());
+        return result;
     }
-    
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ContentDTO other = (ContentDTO) obj;
+        if (todoContent == null) {
+            if (other.todoContent != null)
+                return false;
+        } else if (!todoContent.equals(other.todoContent))
+            return false;
+        return true;
+    }
+
 }

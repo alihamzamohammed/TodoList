@@ -47,26 +47,41 @@ public class CategoryDTO {
         this.todos = todos;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof CategoryDTO)) {
-            return false;
-        }
-        CategoryDTO categoryDTO = (CategoryDTO) o;
-        return id == categoryDTO.id && Objects.equals(name, categoryDTO.name)
-                && Objects.equals(todos, categoryDTO.todos);
-    }
+	@Override
+	public String toString() {
+		return "CategoryDTO [id=" + id + ", name=" + name + ", todos=" + todos + "]";
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, todos);
-    }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((todos == null) ? 0 : todos.hashCode());
+		return result;
+	}
 
-    @Override
-    public String toString() {
-        return "{" + " id='" + getId() + "'" + ", name='" + getName() + "'" + "}";
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CategoryDTO other = (CategoryDTO) obj;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (todos == null) {
+			if (other.todos != null)
+				return false;
+		} else if (!todos.equals(other.todos))
+			return false;
+		return true;
+	}
 
+	
 }
