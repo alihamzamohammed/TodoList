@@ -82,8 +82,7 @@ public class Category {
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
+		int result = 1;		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((todos == null) ? 0 : todos.hashCode());
 		return result;
@@ -98,8 +97,6 @@ public class Category {
 		if (getClass() != obj.getClass())
 			return false;
 		Category other = (Category) obj;
-		if (id != other.id)
-			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
@@ -115,7 +112,7 @@ public class Category {
 
 	@Override
 	public String toString() {
-		return "Category [id=" + id + ", name=" + name + ", todos=" + todos + "]";
+		return "Category [name=" + name + ", todos=" + todos + "]";
 	}
 
     

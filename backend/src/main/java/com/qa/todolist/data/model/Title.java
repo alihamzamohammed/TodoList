@@ -49,14 +49,13 @@ public class Title {
 
 	@Override
 	public String toString() {
-		return "Title [id=" + id + ", todoTitle=" + todoTitle + "]";
+		return "Title [todoTitle=" + todoTitle + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
+		int result = 1;		result = prime * result + id;
 		result = prime * result + ((todoTitle == null) ? 0 : todoTitle.hashCode());
 		return result;
 	}
@@ -70,8 +69,6 @@ public class Title {
 		if (getClass() != obj.getClass())
 			return false;
 		Title other = (Title) obj;
-		if (id != other.id)
-			return false;
 		if (todoTitle == null) {
 			if (other.todoTitle != null)
 				return false;

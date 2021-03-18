@@ -86,27 +86,46 @@ public class Todo {
         this.category = category;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof Todo)) {
-            return false;
-        }
-        Todo todo = (Todo) o;
-        return Objects.equals(title, todo.title) && Objects.equals(content, todo.content)
-                && Objects.equals(category, todo.category);
-    }
+	@Override
+	public String toString() {
+		return "Todo [title=" + title + ", content=" + content + ", category=" + category + "]";
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(title, content, category);
-    }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((category == null) ? 0 : category.hashCode());
+		result = prime * result + ((content == null) ? 0 : content.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		return result;
+	}
 
-    @Override
-    public String toString() {
-        return "{" + " id='" + getId() + "'" + ", title='" + getTitle() + "'" + ", content='" + getContent() + "'"
-                + ", category='" + getCategory() + "'" + "}";
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Todo other = (Todo) obj;
+		if (category == null) {
+			if (other.category != null)
+				return false;
+		} else if (!category.equals(other.category))
+			return false;
+		if (content == null) {
+			if (other.content != null)
+				return false;
+		} else if (!content.equals(other.content))
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		return true;
+	}
 
 }

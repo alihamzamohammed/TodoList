@@ -79,7 +79,7 @@ public class TodoDTO {
 
 	@Override
 	public String toString() {
-		return "TodoDTO [id=" + id + ", title=" + title + ", content=" + content + ", category=" + category + "]";
+		return "TodoDTO [title=" + title + ", content=" + content + ", category=" + category + "]";
 	}
 
 	@Override
