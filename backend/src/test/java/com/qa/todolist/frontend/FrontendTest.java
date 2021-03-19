@@ -9,9 +9,10 @@ import com.qa.todolist.data.model.Content;
 import com.qa.todolist.data.model.Title;
 import com.qa.todolist.data.model.Todo;
 import com.qa.todolist.frontend.home.ReadCategory;
-import com.relevantcodes.extentreports.ExtentReports;
-import com.relevantcodes.extentreports.ExtentTest;
-import com.relevantcodes.extentreports.LogStatus;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentReporter;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -43,7 +44,8 @@ class FrontendTest {
     private int port;
     private static String frontendURL = "http://localhost:5500/frontend/";
     private static WebDriver driver;
-    private static ExtentReports extent;
+    private static ExtentReports extentReport;
+    private static ExtentSparkReporter sparkReporter;
     private static ExtentTest test;
     private static Category category;
     private static Title title;
@@ -57,8 +59,10 @@ class FrontendTest {
         content = new Content("Test Content");
         todo = new Todo(title, content, category);
 
-        extent = new ExtentReports("src/test/resources/reports/report.html", true);
-        test = extent.startTest("ExtentDemo");
+        extentReport = new ExtentReports();
+        sparkReporter = new ExtentSparkReporter("./target/reports/Report.html");
+        extentReport.attachReporter(sparkReporter);
+
         System.setProperty("webdriver.chrome.driver", "src//test//resources//driver//chromedriver.exe");
         ChromeOptions cOptions = new ChromeOptions();
         cOptions.setHeadless(false);
@@ -82,16 +86,34 @@ class FrontendTest {
 
     @Test
     void readCategoryIdTest() throws Exception {
-        assertThat(ReadCategory.findId(1, driver)).isEqualTo(String.valueOf(1));
-        test.addScreenCapture(Helper.snapShot(driver, "src/test/resources/reports/CategoryIdTest.png"));
-        test.log(LogStatus.PASS, "Category ID Test passed");
+
+        ExtentTest test = extentReport.createTest("Category ID Test");
+        test.assignAuthor("Ali Hamza M");
+        try {
+            assertThat(ReadCategory.findId(1, driver)).isEqualTo(String.valueOf(1));
+        } catch (AssertionError e) {
+            test.fail("Category ID Test failed");
+            throw e;
+        }
+
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/CategoryIdTest.png"));
+        test.pass("Category ID Test passed");
     }
 
     @Test
     void readCategoryNameTest() throws Exception {
-        assertThat(ReadCategory.findName(1, driver)).isEqualTo("test");
-        test.addScreenCapture(Helper.snapShot(driver, "src/test/resources/reports/CategoryNameTest.png"));
-        test.log(LogStatus.PASS, "Category Name Test passed");
+        ExtentTest test = extentReport.createTest("Category Name Test");
+        test.assignAuthor("Ali Hamza M");
+        try {
+
+            assertThat(ReadCategory.findName(1, driver)).isEqualTo("test");
+        } catch (AssertionError e) {
+            test.fail("Category Name Test failed");
+            throw e;
+        }
+
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/CategoryNameTest.png"));
+        test.pass("Category Name Test passed");
     }
 
     // @Test
@@ -134,8 +156,6 @@ class FrontendTest {
     @AfterAll
     public static void teardown() {
         driver.quit();
-        extent.endTest(test);
-        extent.flush();
-        extent.close();
+        extentReport.flush();
     }
 }
