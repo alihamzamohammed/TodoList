@@ -3,6 +3,7 @@ backend/target/
 backend/.mvn/
 !**/backend/src/main/**/target/
 !**/backend/src/test/**/target/
+backend/src/test/resources/reports/
 
 ### STS ###
 backend/.apt_generated
