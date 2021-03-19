@@ -220,9 +220,9 @@ class FrontendTest {
         try {
             CreateTodo.create("new todo", "new todo contents", 1, driver);
             driver.get(frontendURL + "index.html");
-            assertThat(ReadTodo.findTitle(1, driver)).isEqualTo("new todo");
-            assertThat(ReadTodo.findContent(1, driver)).isEqualTo("new todo contents");
-            assertThat(ReadTodo.findId(1, driver)).isEqualTo("1");
+            assertThat(ReadTodo.findTitle(2, driver)).isEqualTo("new todo");
+            assertThat(ReadTodo.findContent(2, driver)).isEqualTo("new todo contents");
+            assertThat(ReadTodo.findId(2, driver)).isEqualTo("ID: 2");
         } catch (Exception e) {
             test.fail("Create Todo Create Button Test failed\nError: " + e);
             throw e;
