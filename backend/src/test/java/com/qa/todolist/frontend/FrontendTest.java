@@ -14,6 +14,7 @@ import com.qa.todolist.data.model.Title;
 import com.qa.todolist.data.model.Todo;
 import com.qa.todolist.frontend.category.CreateCategory;
 import com.qa.todolist.frontend.category.EditCategory;
+import com.qa.todolist.frontend.todo.EditTodo;
 import com.qa.todolist.frontend.home.ReadCategory;
 import com.qa.todolist.frontend.home.ReadTodo;
 import com.qa.todolist.frontend.todo.CreateTodo;
@@ -228,10 +229,6 @@ class FrontendTest {
         test.pass("Edit Category Delete Button Test passed");
     }
 
-    // @Test
-    // void deleteCategoryTest() {
-    // }
-
     @Test
     void readTodoIdTest() throws Exception {
         ExtentTest test = extentReport.createTest("Todo ID Test");
@@ -323,9 +320,69 @@ class FrontendTest {
         test.pass("Create Todo Discard Button Test passed");
     }
 
-    // @Test
-    // void editTodoTest() {
-    // }
+    @Test
+    void editTodoUpdateTest() throws Exception {
+        ExtentTest test = extentReport.createTest("Edit Todo Update Button Test");
+        test.assignAuthor("Ali Hamza M");
+        try {
+            EditTodo.update("updated todo", "updated todo content", driver);
+            driver.get(frontendURL + "index.html");
+            assertThat(ReadTodo.findTitle(1, driver)).isEqualTo("updated todo");
+            assertThat(ReadTodo.findContent(1, driver)).isEqualTo("updated todo content");
+        } catch (Exception | AssertionFailedError e) {
+            test.fail("Edit Todo Update Button Test failed\nError: " + e);
+            throw e;
+        }
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/EditTodoUpdateButtonTest.png"));
+        test.pass("Edit Todo Update Button Test passed");
+    }
+
+    @Test
+    void editTodoResetTest() throws Exception {
+        ExtentTest test = extentReport.createTest("Edit Todo Reset Button Test");
+        test.assignAuthor("Ali Hamza M");
+        try {
+            assertThat(EditTodo.reset("updated todo", "updated todo content", driver)).isTrue();
+        } catch (Exception | AssertionFailedError e) {
+            test.fail("Edit Todo Reset Button Test failed\nError: " + e);
+            throw e;
+        }
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/EditTodoResetButtonTest.png"));
+        test.pass("Edit Todo Reset Button Test passed");
+    }
+
+    @Test
+    void editTodoCancelTest() throws Exception {
+        ExtentTest test = extentReport.createTest("Edit Todo Cancel Button Test");
+        test.assignAuthor("Ali Hamza M");
+        try {
+            assertThat(EditTodo.cancel(driver)).isTrue();
+        } catch (Exception | AssertionFailedError e) {
+            test.fail("Edit Todo Cancel Button Test failed\nError: " + e);
+            throw e;
+        }
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/EditTodoCancelButtonTest.png"));
+        test.pass("Edit Todo Cancel Button Test passed");
+    }
+
+    @Test
+    void editTodoDeleteTest() throws Exception {
+        ExtentTest test = extentReport.createTest("Edit Todo Delete Button Test");
+        test.assignAuthor("Ali Hamza M");
+        try {
+            By todo = By.id("todo-1");
+            assertThat(EditTodo.delete(driver)).isTrue();
+            driver.get(frontendURL + "index.html");
+            assertThrows(NoSuchElementException.class, () -> {
+                driver.findElement(todo);
+            });
+        } catch (Exception | AssertionFailedError e) {
+            test.fail("Edit Todo Delete Button Test failed\nError: " + e);
+            throw e;
+        }
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/EditTodoDeleteButtonTest.png"));
+        test.pass("Edit Todo Delete Button Test passed");
+    }
 
     // @Test
     // void deleteTodoTest() {
