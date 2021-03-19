@@ -67,7 +67,7 @@ class FrontendTest {
         cOptions.setCapability("profile.block_third_party_cookies", true);
 
         driver = new ChromeDriver(cOptions);
-        driver.manage().window().setSize(new Dimension(1280, 720));
+        driver.manage().window().setSize(new Dimension(1366, 768));
         driver.get(frontendURL + "index.html");
     }
 
