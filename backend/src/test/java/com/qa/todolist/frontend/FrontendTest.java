@@ -415,25 +415,91 @@ class FrontendTest {
         test.pass("Settings Backend URL Get Test passed");
     }
 
-    // @Test
-    // void createCategoryNavTest() {}
+    @Test
+    void createCategoryNavTest() throws Exception {
+        ExtentTest test = extentReport.createTest("Create Category Navigation Test");
+        test.assignAuthor("Ali Hamza M");
+        try {
+            assertThat(Navigation.createCategory("createCategory.html", driver)).isTrue();
+        } catch (Exception | AssertionFailedError e) {
+            test.fail("Create Category Navigation Test failed\nError: " + e);
+            throw e;
+        }
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/CreateCategoryNavigationTest.png"));
+        test.pass("Create Category Navigation Test passed");
+    }
 
-    // @Test
-    // void createTodoNavTest() {}
+    @Test
+    void createTodoNavTest() throws Exception {
+        ExtentTest test = extentReport.createTest("Create Todo Navigation Test");
+        test.assignAuthor("Ali Hamza M");
+        try {
+            assertThat(Navigation.createTodo("createTodo.html", driver)).isTrue();
+        } catch (Exception | AssertionFailedError e) {
+            test.fail("Create Todo Navigation Test failed\nError: " + e);
+            throw e;
+        }
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/CreateTodoNavigationTest.png"));
+        test.pass("Create Todo Navigation Test passed");
 
-    // @Test
-    // void editCategoryNavTest() {}
+    }
 
-    // @Test
-    // void editTodoNavTest() {}
+    @Test
+    void editCategoryNavTest() throws Exception {
+        ExtentTest test = extentReport.createTest("Edit Category Navigation Test");
+        test.assignAuthor("Ali Hamza M");
+        try {
+            assertThat(Navigation.editCategory("editCategory.html?id=1", driver)).isTrue();
+        } catch (Exception | AssertionFailedError e) {
+            test.fail("Edit Category Navigation Test failed\nError: " + e);
+            throw e;
+        }
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/EditCategoryNavigationTest.png"));
+        test.pass("Edit Category Navigation Test passed");
+    }
 
-    // @Test
-    // void settingsNavTest() {}
+    @Test
+    void editTodoNavTest() throws Exception {
+        ExtentTest test = extentReport.createTest("Edit Todo Navigation Test");
+        test.assignAuthor("Ali Hamza M");
+        try {
+            assertThat(Navigation.editTodo("editTodo.html?id=1", driver)).isTrue();
+        } catch (Exception | AssertionFailedError e) {
+            test.fail("Edit Todo Navigation Test failed\nError: " + e);
+            throw e;
+        }
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/EditTodoNavigationTest.png"));
+        test.pass("Edit Todo Navigation Test passed");
+    }
 
-    // @AfterEach
-    // public void closeDriver() {
-    // driver.close();
-    // }
+    @Test
+    void settingsNavTest() throws Exception {
+        ExtentTest test = extentReport.createTest("Settings Navigation Test");
+        test.assignAuthor("Ali Hamza M");
+        try {
+            assertThat(Navigation.settings("settings.html", driver)).isTrue();
+        } catch (Exception | AssertionFailedError e) {
+            test.fail("Settings Navigation Test failed\nError: " + e);
+            throw e;
+        }
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/SettingsNavigationTest.png"));
+        test.pass("Settings Navigation Test passed");
+    }
+
+    @Test
+    void homeNavTest() throws Exception {
+        ExtentTest test = extentReport.createTest("Home Navigation Test");
+        test.assignAuthor("Ali Hamza M");
+        try {
+            driver.get(frontendURL + "settings.html");
+            assertThat(Navigation.home("index.html", driver)).isTrue();
+        } catch (Exception | AssertionFailedError e) {
+            test.fail("Home Navigation Test failed\nError: " + e);
+            throw e;
+        }
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/HomeNavigationTest.png"));
+        test.pass("Home Navigation Test passed");
+    }
 
     @AfterAll
     public static void teardown() {
