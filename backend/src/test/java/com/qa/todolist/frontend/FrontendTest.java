@@ -11,13 +11,12 @@ import com.qa.todolist.data.model.Todo;
 import com.qa.todolist.frontend.category.CreateCategory;
 import com.qa.todolist.frontend.home.ReadCategory;
 import com.qa.todolist.frontend.home.ReadTodo;
+import com.qa.todolist.frontend.todo.CreateTodo;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.reporter.ExtentReporter;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -214,9 +213,51 @@ class FrontendTest {
         test.pass("Todo Content Test passed");
     }
 
-    // @Test
-    // void createTodoTest() {
-    // }
+    @Test
+    void createTodoCreateTest() throws Exception {
+        ExtentTest test = extentReport.createTest("Create Todo Create Button Test");
+        test.assignAuthor("Ali Hamza M");
+        try {
+            CreateTodo.create("new todo", "new todo contents", 1, driver);
+            driver.get(frontendURL + "index.html");
+            assertThat(ReadTodo.findTitle(1, driver)).isEqualTo("new todo");
+            assertThat(ReadTodo.findContent(1, driver)).isEqualTo("new todo contents");
+            assertThat(ReadTodo.findId(1, driver)).isEqualTo("1");
+        } catch (AssertionError e) {
+            test.fail("Create Todo Create Button Test failed");
+            throw e;
+        }
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/CreateTodoCreateButtonTest.png"));
+        test.pass("Create Todo Create Button Test passed");
+    }
+
+    @Test
+    void createTodoResetTest() throws Exception {
+        ExtentTest test = extentReport.createTest("Create Todo Reset Button Test");
+        test.assignAuthor("Ali Hamza M");
+        try {
+            assertThat(CreateTodo.reset("new todo", "new todo contents", driver)).isTrue();
+        } catch (AssertionError e) {
+            test.fail("Create Todo Reset Button Test failed");
+            throw e;
+        }
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/CreateTodoResetButtonTest.png"));
+        test.pass("Create Todo Reset Button Test passed");
+    }
+
+    @Test
+    void createTodoDiscardTest() throws Exception {
+        ExtentTest test = extentReport.createTest("Create Todo Discard Button Test");
+        test.assignAuthor("Ali Hamza M");
+        try {
+            assertThat(CreateTodo.discard("new todo", "new todo contents", driver)).isTrue();
+        } catch (AssertionError e) {
+            test.fail("Create Todo Discard Button Test failed");
+            throw e;
+        }
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/CreateTodoDiscardButtonTest.png"));
+        test.pass("Create Todo Discard Button Test passed");
+    }
 
     // @Test
     // void editTodoTest() {
