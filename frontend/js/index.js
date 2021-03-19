@@ -18,6 +18,7 @@ let createItem = (items) => {
             let card = document.createElement("div");
             card.classList.add("card");
             card.classList.add("todo-item");
+            card.id = `todo-${group[item].id}`;
 
             let a = document.createElement("a");
             a.className = "link-text";

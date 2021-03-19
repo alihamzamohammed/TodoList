@@ -8,7 +8,7 @@ import com.qa.todolist.data.model.Category;
 import com.qa.todolist.data.repository.CategoryRepository;
 import com.qa.todolist.dto.CategoryDTO;
 import com.qa.todolist.exceptions.CategoryAlreadyExistsException;
-import com.qa.todolist.exceptions.CategoryNotFoundExcepion;
+import com.qa.todolist.exceptions.CategoryNotFoundException;
 import com.qa.todolist.mapper.CategoryMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +38,7 @@ public class CategoryService {
         if (category.isPresent()) {
             return categoryMapper.mapToDTO(category.get());
         } else {
-            throw new CategoryNotFoundExcepion();
+            throw new CategoryNotFoundException();
         }
     }
 
@@ -60,7 +60,7 @@ public class CategoryService {
             catToUpdate.setName(category.getName());
             return categoryMapper.mapToDTO(categoryRepository.save(catToUpdate));
         } else {
-            throw new CategoryNotFoundExcepion();
+            throw new CategoryNotFoundException();
         }
     }
 
@@ -68,7 +68,7 @@ public class CategoryService {
         if (categoryRepository.existsById(id)) {
             categoryRepository.deleteById(id);
         } else {
-            throw new CategoryNotFoundExcepion();
+            throw new CategoryNotFoundException();
         }
         return !categoryRepository.existsById(id);
     }

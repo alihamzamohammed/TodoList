@@ -1,8 +1,8 @@
 package com.qa.todolist.data.model;
 
 import java.util.List;
-import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,10 +27,9 @@ public class Category {
     @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "category", fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(mappedBy = "category", fetch = FetchType.EAGER, orphanRemoval = true) // , cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Todo> todos;
-
 
     public Category() {
     }
@@ -44,6 +43,15 @@ public class Category {
     public Category(String name, List<Todo> todos) {
         this.name = name;
         this.todos = todos;
+    }
+
+    public Category(String name) {
+        this.name = name;
+    }
+
+    public Category(int id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public int getId() {
@@ -70,31 +78,40 @@ public class Category {
         this.todos = todos;
     }
 
-
     @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof Category)) {
-            return false;
-        }
-        Category category = (Category) o;
-        return id == category.id && Objects.equals(name, category.name) && Objects.equals(todos, category.todos);
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + ((todos == null) ? 0 : todos.hashCode());
+        return result;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(id, name, todos);
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Category other = (Category) obj;
+        if (name == null) {
+            if (other.name != null)
+                return false;
+        } else if (!name.equals(other.name))
+            return false;
+        if (todos == null) {
+            if (other.todos != null)
+                return false;
+        } else if (!todos.equals(other.todos))
+            return false;
+        return true;
     }
 
     @Override
     public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", name='" + getName() + "'" +
-            ", todos='" + getTodos() + "'" +
-            "}";
+        return "Category [name=" + name + ", todos=" + todos + "]";
     }
-    
-    
+
 }

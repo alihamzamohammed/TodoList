@@ -1,7 +1,5 @@
 package com.qa.todolist.data.model;
 
-import java.util.Objects;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,12 +30,12 @@ public class Todo {
         this.id = id;
     }
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
+    @OneToOne(fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "fk_title_id")
     private Title title;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
+    @OneToOne(fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "fk_content_id")
     private Content content;
@@ -87,26 +85,45 @@ public class Todo {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof Todo)) {
-            return false;
-        }
-        Todo todo = (Todo) o;
-        return id == todo.id && Objects.equals(title, todo.title) && Objects.equals(content, todo.content)
-                && Objects.equals(category, todo.category);
+    public String toString() {
+        return "Todo [title=" + title + ", content=" + content + ", category=" + category.getName() + "]";
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, content, category);
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((category == null) ? 0 : category.hashCode());
+        result = prime * result + ((content == null) ? 0 : content.hashCode());
+        result = prime * result + ((title == null) ? 0 : title.hashCode());
+        return result;
     }
 
     @Override
-    public String toString() {
-        return "{" + " id='" + getId() + "'" + ", title='" + getTitle() + "'" + ", content='" + getContent() + "'"
-                + ", category='" + getCategory() + "'" + "}";
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Todo other = (Todo) obj;
+        if (category == null) {
+            if (other.category != null)
+                return false;
+        } else if (!category.equals(other.category))
+            return false;
+        if (content == null) {
+            if (other.content != null)
+                return false;
+        } else if (!content.equals(other.content))
+            return false;
+        if (title == null) {
+            if (other.title != null)
+                return false;
+        } else if (!title.equals(other.title))
+            return false;
+        return true;
     }
 
 }

@@ -98,6 +98,9 @@ readTodo(urlParams.get("id")).then(data => {
     document.querySelector("#name-input").value = data.name;
     document.querySelector("#spinner").style.display = "none";
     document.querySelector("#edit-form").style.display = "block";
+    if (document.querySelector("#name-input").value == "Unsorted") {
+        document.querySelector("#delete-button").setAttribute("disabled", "true");
+    }
 }).catch(err => {
     document.querySelector("#spinner-actual").style.display = "none";
     document.querySelector("#load-status").innerHTML = "This category doesn't exist, or none was specified<br>Please select a category to edit from the home page";

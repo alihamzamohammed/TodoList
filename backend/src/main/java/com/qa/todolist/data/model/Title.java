@@ -1,7 +1,5 @@
 package com.qa.todolist.data.model;
 
-import java.util.Objects;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +16,6 @@ public class Title {
 
     @Column(name = "title")
     private String todoTitle;
-
 
     public int getId() {
         return this.id;
@@ -44,34 +41,38 @@ public class Title {
         this.todoTitle = todoTitle;
     }
 
-
-
     public Title(String todoTitle) {
         this.todoTitle = todoTitle;
     }
 
     @Override
     public String toString() {
-        return "{" +
-            " todoTitle='" + getTodoTitle() + "'" +
-            "}";
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof Title)) {
-            return false;
-        }
-        Title title = (Title) o;
-        return Objects.equals(todoTitle, title.todoTitle);
+        return "Title [todoTitle=" + todoTitle + "]";
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(todoTitle);
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((todoTitle == null) ? 0 : todoTitle.hashCode());
+        return result;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Title other = (Title) obj;
+        if (todoTitle == null) {
+            if (other.todoTitle != null)
+                return false;
+        } else if (!todoTitle.equals(other.todoTitle))
+            return false;
+        return true;
+    }
 
 }
