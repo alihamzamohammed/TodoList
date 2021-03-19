@@ -8,7 +8,9 @@ import com.qa.todolist.data.model.Category;
 import com.qa.todolist.data.model.Content;
 import com.qa.todolist.data.model.Title;
 import com.qa.todolist.data.model.Todo;
+import com.qa.todolist.frontend.category.CreateCategory;
 import com.qa.todolist.frontend.home.ReadCategory;
+import com.qa.todolist.frontend.home.ReadTodo;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentReporter;
@@ -86,7 +88,6 @@ class FrontendTest {
 
     @Test
     void readCategoryIdTest() throws Exception {
-
         ExtentTest test = extentReport.createTest("Category ID Test");
         test.assignAuthor("Ali Hamza M");
         try {
@@ -116,9 +117,49 @@ class FrontendTest {
         test.pass("Category Name Test passed");
     }
 
-    // @Test
-    // void createCategoryTest() {
-    // }
+    @Test
+    void createCategoryCreateTest() throws Exception {
+        ExtentTest test = extentReport.createTest("Create Category Create Button Test");
+        test.assignAuthor("Ali Hamza M");
+        try {
+            CreateCategory.create("new category", driver);
+            driver.get(frontendURL + "index.html");
+            assertThat(ReadCategory.findName(2, driver)).isEqualTo("new category");
+        } catch (AssertionError e) {
+            test.fail("Create Category Create Button Test failed");
+            throw e;
+        }
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/CreateCategoryCreateButtonTest.png"));
+        test.pass("Create Category Create Button Test passed");
+    }
+
+    @Test
+    void createCategoryResetTest() throws Exception {
+        ExtentTest test = extentReport.createTest("Create Category Reset Button Test");
+        test.assignAuthor("Ali Hamza M");
+        try {
+            assertThat(CreateCategory.reset("new category", driver)).isTrue();
+        } catch (AssertionError e) {
+            test.fail("Create Category Reset Button Test failed");
+            throw e;
+        }
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/CreateCategoryResetButtonTest.png"));
+        test.pass("Create Category Reset Button Test passed");
+    }
+
+    @Test
+    void createCategoryDiscardTest() throws Exception {
+        ExtentTest test = extentReport.createTest("Create Category Discard Button Test");
+        test.assignAuthor("Ali Hamza M");
+        try {
+            assertThat(CreateCategory.discard("new category", driver)).isTrue();
+        } catch (AssertionError e) {
+            test.fail("Create Category Discard Button Test failed");
+            throw e;
+        }
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/CreateCategoryDiscardButtonTest.png"));
+        test.pass("Create Category Discard Button Test passed");
+    }
 
     // @Test
     // void editCategoryTest() {
@@ -128,9 +169,50 @@ class FrontendTest {
     // void deleteCategoryTest() {
     // }
 
-    // @Test
-    // void readTodoTest() {
-    // }
+    @Test
+    void readTodoIdTest() throws Exception {
+        ExtentTest test = extentReport.createTest("Todo ID Test");
+        test.assignAuthor("Ali Hamza M");
+        try {
+            assertThat(ReadTodo.findId(1, driver)).isEqualTo("ID: 1");
+        } catch (AssertionError e) {
+            test.fail("Todo ID Test failed");
+            throw e;
+        }
+
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/TodoIdTest.png"));
+        test.pass("Todo ID Test passed");
+    }
+
+    @Test
+    void readTodoTitleTest() throws Exception {
+        ExtentTest test = extentReport.createTest("Todo Title Test");
+        test.assignAuthor("Ali Hamza M");
+        try {
+            assertThat(ReadTodo.findTitle(1, driver)).isEqualTo("test");
+        } catch (AssertionError e) {
+            test.fail("Todo Title Test failed");
+            throw e;
+        }
+
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/TodoTitleTest.png"));
+        test.pass("Todo Title Test passed");
+    }
+
+    @Test
+    void readTodoContentTest() throws Exception {
+        ExtentTest test = extentReport.createTest("Todo Content Test");
+        test.assignAuthor("Ali Hamza M");
+        try {
+            assertThat(ReadTodo.findContent(1, driver)).isEqualTo("test");
+        } catch (AssertionError e) {
+            test.fail("Todo Content Test failed");
+            throw e;
+        }
+
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/TodoContentTest.png"));
+        test.pass("Todo Content Test passed");
+    }
 
     // @Test
     // void createTodoTest() {

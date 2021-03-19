@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ReadTodo {
 
-    public static WebElement findCategory(int id, WebDriver driver) {
+    public static WebElement findTodo(int id, WebDriver driver) {
         By element = By.cssSelector("#todo-" + id);
         driver.navigate().refresh();
         new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOfElementLocated(element));
@@ -16,11 +16,15 @@ public class ReadTodo {
     }
 
     public static String findId(int id, WebDriver driver) {
-        return findCategory(id, driver).findElement(By.cssSelector(".todo-id h4")).getText();
+        return findTodo(id, driver).findElement(By.cssSelector(".todo-id")).getText();
     }
 
-    public static String findName(int id, WebDriver driver) {
-        return findCategory(id, driver).findElement(By.cssSelector(".todo-name h3")).getText();
+    public static String findTitle(int id, WebDriver driver) {
+        return findTodo(id, driver).findElement(By.cssSelector(".card-title")).getText();
+    }
+
+    public static String findContent(int id, WebDriver driver) {
+        return findTodo(id, driver).findElement(By.cssSelector(".card-text")).getText();
     }
 
 }
