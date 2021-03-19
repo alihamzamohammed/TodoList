@@ -12,7 +12,7 @@ public class CreateTodo {
     private static String frontendURL = "http://localhost:5500/frontend/";
 
     public static Boolean create(String title, String content, int category, WebDriver driver) {
-        driver.get(frontendURL + "createCategory.html");
+        driver.get(frontendURL + "createTodo.html");
         WebElement titleInput = driver.findElement(By.id("title-input"));
         titleInput.sendKeys(title);
         WebElement contentInput = driver.findElement(By.id("content-input"));
@@ -27,7 +27,7 @@ public class CreateTodo {
     }
 
     public static Boolean reset(String title, String content, WebDriver driver) {
-        driver.get(frontendURL + "createCategory.html");
+        driver.get(frontendURL + "createTodo.html");
         WebElement titleInput = driver.findElement(By.id("title-input"));
         titleInput.sendKeys(title);
         WebElement contentInput = driver.findElement(By.id("content-input"));
@@ -38,7 +38,7 @@ public class CreateTodo {
     }
 
     public static Boolean discard(String title, String content, WebDriver driver) {
-        driver.get(frontendURL + "createCategory.html");
+        driver.get(frontendURL + "createTodo.html");
         WebElement titleInput = driver.findElement(By.id("title-input"));
         titleInput.sendKeys(title);
         WebElement contentInput = driver.findElement(By.id("content-input"));
