@@ -18,7 +18,7 @@ public class CreateCategory {
         createButton.click();
         By response = By.id("response");
         new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(response));
-        return driver.findElement(response).getCssValue("color").equals("green");
+        return driver.findElement(response).getText().startsWith("Category successfully created!");
     }
 
     public static Boolean reset(String title, WebDriver driver) {

@@ -19,7 +19,7 @@ public class EditCategory {
         createButton.click();
         By response = By.id("response");
         new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(response));
-        return driver.findElement(response).getCssValue("color").equals("green");
+        return driver.findElement(response).getText().startsWith("Category successfully updated!");
     }
 
     public static Boolean reset(String name, WebDriver driver) {
@@ -44,6 +44,6 @@ public class EditCategory {
         deleteButton.click();
         By response = By.id("response");
         new WebDriverWait(driver, 7).until(ExpectedConditions.visibilityOfElementLocated(response));
-        return driver.findElement(response).getCssValue("color").equals("rgba(0, 128, 0, 1)");
+        return driver.findElement(response).getText().equals("Category successfully deleted!");
     }
 }

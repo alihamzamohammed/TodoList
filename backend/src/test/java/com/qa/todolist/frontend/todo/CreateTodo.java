@@ -23,7 +23,7 @@ public class CreateTodo {
         createButton.click();
         By response = By.id("response");
         new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(response));
-        return driver.findElement(response).getCssValue("color").equals("green");
+        return driver.findElement(response).getText().startsWith("To-Do Item successfully created!");
     }
 
     public static Boolean reset(String title, String content, WebDriver driver) {
