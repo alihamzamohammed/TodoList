@@ -1,32 +1,37 @@
 package com.qa.todolist.frontend;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.concurrent.TimeUnit;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.qa.todolist.data.model.Category;
 import com.qa.todolist.data.model.Content;
 import com.qa.todolist.data.model.Title;
 import com.qa.todolist.data.model.Todo;
 import com.qa.todolist.frontend.category.CreateCategory;
+import com.qa.todolist.frontend.category.EditCategory;
 import com.qa.todolist.frontend.home.ReadCategory;
 import com.qa.todolist.frontend.home.ReadTodo;
 import com.qa.todolist.frontend.todo.CreateTodo;
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.opentest4j.AssertionFailedError;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.web.server.LocalServerPort;
@@ -91,7 +96,7 @@ class FrontendTest {
         test.assignAuthor("Ali Hamza M");
         try {
             assertThat(ReadCategory.findId(1, driver)).isEqualTo(String.valueOf(1));
-        } catch (Exception e) {
+        } catch (Exception | AssertionFailedError e) {
             test.fail("Category ID Test failed\nError: " + e);
             throw e;
         }
@@ -107,7 +112,7 @@ class FrontendTest {
         try {
 
             assertThat(ReadCategory.findName(1, driver)).isEqualTo("test");
-        } catch (Exception e) {
+        } catch (Exception | AssertionFailedError e) {
             test.fail("Category Name Test failed\nError: " + e);
             throw e;
         }
@@ -124,7 +129,7 @@ class FrontendTest {
             CreateCategory.create("new category", driver);
             driver.get(frontendURL + "index.html");
             assertThat(ReadCategory.findName(2, driver)).isEqualTo("new category");
-        } catch (Exception e) {
+        } catch (Exception | AssertionFailedError e) {
             test.fail("Create Category Create Button Test failed\nError: " + e);
             throw e;
         }
@@ -138,7 +143,7 @@ class FrontendTest {
         test.assignAuthor("Ali Hamza M");
         try {
             assertThat(CreateCategory.reset("new category", driver)).isTrue();
-        } catch (Exception e) {
+        } catch (Exception | AssertionFailedError e) {
             test.fail("Create Category Reset Button Test failed\nError: " + e);
             throw e;
         }
@@ -152,7 +157,7 @@ class FrontendTest {
         test.assignAuthor("Ali Hamza M");
         try {
             assertThat(CreateCategory.discard("new category", driver)).isTrue();
-        } catch (Exception e) {
+        } catch (Exception | AssertionFailedError e) {
             test.fail("Create Category Discard Button Test failed\nError: " + e);
             throw e;
         }
@@ -160,9 +165,68 @@ class FrontendTest {
         test.pass("Create Category Discard Button Test passed");
     }
 
-    // @Test
-    // void editCategoryTest() {
-    // }
+    @Test
+    void editCategoryUpdateTest() throws Exception {
+        ExtentTest test = extentReport.createTest("Edit Category Update Button Test");
+        test.assignAuthor("Ali Hamza M");
+        try {
+            EditCategory.update("updated category", driver);
+            driver.get(frontendURL + "index.html");
+            assertThat(ReadCategory.findName(1, driver)).isEqualTo("updated category");
+        } catch (Exception | AssertionFailedError e) {
+            test.fail("Edit Category Update Button Test failed\nError: " + e);
+            throw e;
+        }
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/EditCategoryUpdateButtonTest.png"));
+        test.pass("Edit Category Update Button Test passed");
+    }
+
+    @Test
+    void editCategoryResetTest() throws Exception {
+        ExtentTest test = extentReport.createTest("Edit Category Reset Button Test");
+        test.assignAuthor("Ali Hamza M");
+        try {
+            assertThat(EditCategory.reset("updated category", driver)).isTrue();
+        } catch (Exception | AssertionFailedError e) {
+            test.fail("Edit Category Reset Button Test failed\nError: " + e);
+            throw e;
+        }
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/EditCategoryResetButtonTest.png"));
+        test.pass("Edit Category Reset Button Test passed");
+    }
+
+    @Test
+    void editCategoryCancelTest() throws Exception {
+        ExtentTest test = extentReport.createTest("Edit Category Cancel Button Test");
+        test.assignAuthor("Ali Hamza M");
+        try {
+            assertThat(EditCategory.cancel(driver)).isTrue();
+        } catch (Exception | AssertionFailedError e) {
+            test.fail("Edit Category Cancel Button Test failed\nError: " + e);
+            throw e;
+        }
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/EditCategoryCancelButtonTest.png"));
+        test.pass("Edit Category Cancel Button Test passed");
+    }
+
+    @Test
+    void editCategoryDeleteTest() throws Exception {
+        ExtentTest test = extentReport.createTest("Edit Category Delete Button Test");
+        test.assignAuthor("Ali Hamza M");
+        try {
+            By category = By.id("category-1");
+            assertThat(EditCategory.delete(driver)).isTrue();
+            driver.get(frontendURL + "index.html");
+            assertThrows(NoSuchElementException.class, () -> {
+                driver.findElement(category);
+            });
+        } catch (Exception | AssertionFailedError e) {
+            test.fail("Edit Category Delete Button Test failed\nError: " + e);
+            throw e;
+        }
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/EditCategoryDeleteButtonTest.png"));
+        test.pass("Edit Category Delete Button Test passed");
+    }
 
     // @Test
     // void deleteCategoryTest() {
@@ -174,7 +238,7 @@ class FrontendTest {
         test.assignAuthor("Ali Hamza M");
         try {
             assertThat(ReadTodo.findId(1, driver)).isEqualTo("ID: 1");
-        } catch (Exception e) {
+        } catch (Exception | AssertionFailedError e) {
             test.fail("Todo ID Test failed\nError: " + e);
             throw e;
         }
@@ -189,7 +253,7 @@ class FrontendTest {
         test.assignAuthor("Ali Hamza M");
         try {
             assertThat(ReadTodo.findTitle(1, driver)).isEqualTo("test");
-        } catch (Exception e) {
+        } catch (Exception | AssertionFailedError e) {
             test.fail("Todo Title Test failed\nError: " + e);
             throw e;
         }
@@ -204,7 +268,7 @@ class FrontendTest {
         test.assignAuthor("Ali Hamza M");
         try {
             assertThat(ReadTodo.findContent(1, driver)).isEqualTo("test");
-        } catch (Exception e) {
+        } catch (Exception | AssertionFailedError e) {
             test.fail("Todo Content Test failed\nError: " + e);
             throw e;
         }
@@ -223,7 +287,7 @@ class FrontendTest {
             assertThat(ReadTodo.findTitle(2, driver)).isEqualTo("new todo");
             assertThat(ReadTodo.findContent(2, driver)).isEqualTo("new todo contents");
             assertThat(ReadTodo.findId(2, driver)).isEqualTo("ID: 2");
-        } catch (Exception e) {
+        } catch (Exception | AssertionFailedError e) {
             test.fail("Create Todo Create Button Test failed\nError: " + e);
             throw e;
         }
@@ -237,7 +301,7 @@ class FrontendTest {
         test.assignAuthor("Ali Hamza M");
         try {
             assertThat(CreateTodo.reset("new todo", "new todo contents", driver)).isTrue();
-        } catch (Exception e) {
+        } catch (Exception | AssertionFailedError e) {
             test.fail("Create Todo Reset Button Test failed\nError: " + e);
             throw e;
         }
@@ -251,7 +315,7 @@ class FrontendTest {
         test.assignAuthor("Ali Hamza M");
         try {
             assertThat(CreateTodo.discard("new todo", "new todo contents", driver)).isTrue();
-        } catch (Exception e) {
+        } catch (Exception | AssertionFailedError e) {
             test.fail("Create Todo Discard Button Test failed\nError: " + e);
             throw e;
         }
