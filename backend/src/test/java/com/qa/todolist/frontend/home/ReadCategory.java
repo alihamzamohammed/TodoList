@@ -10,8 +10,8 @@ public class ReadCategory {
 
     public static WebElement findCategory(int id, WebDriver driver) {
         By element = By.cssSelector("#category-" + id);
-        // driver.navigate().refresh();
-        new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(element));
+        driver.navigate().refresh();
+        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOfElementLocated(element));
         return driver.findElement(element);
     }
 

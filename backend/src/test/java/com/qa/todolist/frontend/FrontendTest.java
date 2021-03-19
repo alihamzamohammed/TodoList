@@ -11,6 +11,7 @@ import com.qa.todolist.data.model.Todo;
 import com.qa.todolist.frontend.home.ReadCategory;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -32,26 +33,18 @@ import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @ExtendWith(SeleniumJupiter.class)
 @Sql(scripts = { "classpath:test-schema.sql",
         "classpath:test-data-todo.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, properties = "spring.datasource.url=jdbc:h2:mem:testDB;DB_CLOSE_ON_EXIT=FALSE")
 class FrontendTest {
 
     @LocalServerPort
-    private static int port;
+    private int port;
     private static String frontendURL = "http://localhost:5500/frontend/";
     private static WebDriver driver;
     private static ExtentReports extent;
     private static ExtentTest test;
-    // @Autowired
-    // private CategoryRepository categoryRepository;
-    // @Autowired
-    // private TodoRepository todoRepository;
-    // @Autowired
-    // private TitleRepository titleRepository;
-    // @Autowired
-    // private ContentRepository contentRepository;
     private static Category category;
     private static Title title;
     private static Content content;
@@ -78,58 +71,65 @@ class FrontendTest {
         driver = new ChromeDriver(cOptions);
         driver.manage().window().setSize(new Dimension(1280, 720));
         driver.get(frontendURL + "index.html");
-        driver.manage().addCookie(new Cookie("serverurl", "http://localhost:" + port));
-
     }
 
     @BeforeEach
     public void foundation() throws TimeoutException {
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-    }
-
-    @Test
-    void readCategoryTest() {
         driver.get(frontendURL + "index.html");
+        driver.manage().addCookie(new Cookie("serverurl", "http://localhost:" + port));
+    }
+
+    @Test
+    void readCategoryIdTest() throws Exception {
         assertThat(ReadCategory.findId(1, driver)).isEqualTo(String.valueOf(1));
+        test.addScreenCapture(Helper.snapShot(driver, "src/test/resources/reports/CategoryIdTest.png"));
+        test.log(LogStatus.PASS, "Category ID Test passed");
+    }
+
+    @Test
+    void readCategoryNameTest() throws Exception {
         assertThat(ReadCategory.findName(1, driver)).isEqualTo("test");
+        test.addScreenCapture(Helper.snapShot(driver, "src/test/resources/reports/CategoryNameTest.png"));
+        test.log(LogStatus.PASS, "Category Name Test passed");
     }
 
-    @Test
-    void createCategoryTest() {
-    }
+    // @Test
+    // void createCategoryTest() {
+    // }
 
-    @Test
-    void editCategoryTest() {
-    }
+    // @Test
+    // void editCategoryTest() {
+    // }
 
-    @Test
-    void deleteCategoryTest() {
-    }
+    // @Test
+    // void deleteCategoryTest() {
+    // }
 
-    @Test
-    void readTodoTest() {
-    }
+    // @Test
+    // void readTodoTest() {
+    // }
 
-    @Test
-    void createTodoTest() {
-    }
+    // @Test
+    // void createTodoTest() {
+    // }
 
-    @Test
-    void editTodoTest() {
-    }
+    // @Test
+    // void editTodoTest() {
+    // }
 
-    @Test
-    void deleteTodoTest() {
-    }
+    // @Test
+    // void deleteTodoTest() {
+    // }
 
-    @Test
-    void backendURLSetTest() {
-    }
+    // @Test
+    // void backendURLSetTest() {
+    // }
 
-    @AfterEach
-    public void closeDriver() {
-        driver.close();
-    }
+    // @AfterEach
+    // public void closeDriver() {
+    // driver.close();
+    // }
 
     @AfterAll
     public static void teardown() {

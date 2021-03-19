@@ -3,6 +3,7 @@ backend/target/
 backend/.mvn/
 !**/backend/src/main/**/target/
 !**/backend/src/test/**/target/
+backend/src/test/resources/reports/
 
 ### STS ###
 backend/.apt_generated
@@ -33,4 +34,3 @@ backend/!**/src/test/**/build/
 .vscode/
 backend/mvnw
 backend/mvnw.cmd
-backend/src/test/resources/reports/report.html
