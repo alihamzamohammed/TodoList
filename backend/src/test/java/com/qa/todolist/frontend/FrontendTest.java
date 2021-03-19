@@ -91,8 +91,8 @@ class FrontendTest {
         test.assignAuthor("Ali Hamza M");
         try {
             assertThat(ReadCategory.findId(1, driver)).isEqualTo(String.valueOf(1));
-        } catch (AssertionError e) {
-            test.fail("Category ID Test failed");
+        } catch (Exception e) {
+            test.fail("Category ID Test failed\nError: " + e);
             throw e;
         }
 
@@ -107,8 +107,8 @@ class FrontendTest {
         try {
 
             assertThat(ReadCategory.findName(1, driver)).isEqualTo("test");
-        } catch (AssertionError e) {
-            test.fail("Category Name Test failed");
+        } catch (Exception e) {
+            test.fail("Category Name Test failed\nError: " + e);
             throw e;
         }
 
@@ -124,8 +124,8 @@ class FrontendTest {
             CreateCategory.create("new category", driver);
             driver.get(frontendURL + "index.html");
             assertThat(ReadCategory.findName(2, driver)).isEqualTo("new category");
-        } catch (AssertionError e) {
-            test.fail("Create Category Create Button Test failed");
+        } catch (Exception e) {
+            test.fail("Create Category Create Button Test failed\nError: " + e);
             throw e;
         }
         test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/CreateCategoryCreateButtonTest.png"));
@@ -138,8 +138,8 @@ class FrontendTest {
         test.assignAuthor("Ali Hamza M");
         try {
             assertThat(CreateCategory.reset("new category", driver)).isTrue();
-        } catch (AssertionError e) {
-            test.fail("Create Category Reset Button Test failed");
+        } catch (Exception e) {
+            test.fail("Create Category Reset Button Test failed\nError: " + e);
             throw e;
         }
         test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/CreateCategoryResetButtonTest.png"));
@@ -152,8 +152,8 @@ class FrontendTest {
         test.assignAuthor("Ali Hamza M");
         try {
             assertThat(CreateCategory.discard("new category", driver)).isTrue();
-        } catch (AssertionError e) {
-            test.fail("Create Category Discard Button Test failed");
+        } catch (Exception e) {
+            test.fail("Create Category Discard Button Test failed\nError: " + e);
             throw e;
         }
         test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/CreateCategoryDiscardButtonTest.png"));
@@ -174,8 +174,8 @@ class FrontendTest {
         test.assignAuthor("Ali Hamza M");
         try {
             assertThat(ReadTodo.findId(1, driver)).isEqualTo("ID: 1");
-        } catch (AssertionError e) {
-            test.fail("Todo ID Test failed");
+        } catch (Exception e) {
+            test.fail("Todo ID Test failed\nError: " + e);
             throw e;
         }
 
@@ -189,8 +189,8 @@ class FrontendTest {
         test.assignAuthor("Ali Hamza M");
         try {
             assertThat(ReadTodo.findTitle(1, driver)).isEqualTo("test");
-        } catch (AssertionError e) {
-            test.fail("Todo Title Test failed");
+        } catch (Exception e) {
+            test.fail("Todo Title Test failed\nError: " + e);
             throw e;
         }
 
@@ -204,8 +204,8 @@ class FrontendTest {
         test.assignAuthor("Ali Hamza M");
         try {
             assertThat(ReadTodo.findContent(1, driver)).isEqualTo("test");
-        } catch (AssertionError e) {
-            test.fail("Todo Content Test failed");
+        } catch (Exception e) {
+            test.fail("Todo Content Test failed\nError: " + e);
             throw e;
         }
 
@@ -223,8 +223,8 @@ class FrontendTest {
             assertThat(ReadTodo.findTitle(1, driver)).isEqualTo("new todo");
             assertThat(ReadTodo.findContent(1, driver)).isEqualTo("new todo contents");
             assertThat(ReadTodo.findId(1, driver)).isEqualTo("1");
-        } catch (AssertionError e) {
-            test.fail("Create Todo Create Button Test failed");
+        } catch (Exception e) {
+            test.fail("Create Todo Create Button Test failed\nError: " + e);
             throw e;
         }
         test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/CreateTodoCreateButtonTest.png"));
@@ -237,8 +237,8 @@ class FrontendTest {
         test.assignAuthor("Ali Hamza M");
         try {
             assertThat(CreateTodo.reset("new todo", "new todo contents", driver)).isTrue();
-        } catch (AssertionError e) {
-            test.fail("Create Todo Reset Button Test failed");
+        } catch (Exception e) {
+            test.fail("Create Todo Reset Button Test failed\nError: " + e);
             throw e;
         }
         test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/CreateTodoResetButtonTest.png"));
@@ -251,8 +251,8 @@ class FrontendTest {
         test.assignAuthor("Ali Hamza M");
         try {
             assertThat(CreateTodo.discard("new todo", "new todo contents", driver)).isTrue();
-        } catch (AssertionError e) {
-            test.fail("Create Todo Discard Button Test failed");
+        } catch (Exception e) {
+            test.fail("Create Todo Discard Button Test failed\nError: " + e);
             throw e;
         }
         test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/CreateTodoDiscardButtonTest.png"));
