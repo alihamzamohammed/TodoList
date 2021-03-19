@@ -17,6 +17,7 @@ import com.qa.todolist.frontend.category.EditCategory;
 import com.qa.todolist.frontend.todo.EditTodo;
 import com.qa.todolist.frontend.home.ReadCategory;
 import com.qa.todolist.frontend.home.ReadTodo;
+import com.qa.todolist.frontend.settings.SettingsPage;
 import com.qa.todolist.frontend.todo.CreateTodo;
 
 import org.junit.jupiter.api.AfterAll;
@@ -384,13 +385,35 @@ class FrontendTest {
         test.pass("Edit Todo Delete Button Test passed");
     }
 
-    // @Test
-    // void deleteTodoTest() {
-    // }
+    @Test
+    void backendURLSetTest() throws Exception {
+        ExtentTest test = extentReport.createTest("Settings Backend URL Set Test");
+        test.assignAuthor("Ali Hamza M");
+        try {
+            SettingsPage.setUrl("http://localhost:2342", driver);
+            assertThat(driver.manage().getCookieNamed("serverurl").getValue()).isEqualTo("http://localhost:2342");
+        } catch (Exception | AssertionFailedError e) {
+            test.fail("Settings Backend URL Set Test failed\nError: " + e);
+            throw e;
+        }
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/SettingsBackendURLSetTest.png"));
+        test.pass("Settings Backend URL Set Test passed");
+    }
 
-    // @Test
-    // void backendURLSetTest() {
-    // }
+    @Test
+    void backendURLGetTest() throws Exception {
+        ExtentTest test = extentReport.createTest("Settings Backend URL Get Test");
+        test.assignAuthor("Ali Hamza M");
+        try {
+            String backendUrl = driver.manage().getCookieNamed("serverurl").getValue();
+            assertThat(SettingsPage.getUrl(backendUrl, driver)).isTrue();
+        } catch (Exception | AssertionFailedError e) {
+            test.fail("Settings Backend URL Get Test failed\nError: " + e);
+            throw e;
+        }
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/SettingsBackendURLGetTest.png"));
+        test.pass("Settings Backend URL Get Test passed");
+    }
 
     // @Test
     // void createCategoryNavTest() {}
