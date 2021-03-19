@@ -8,10 +8,6 @@ import java.util.concurrent.TimeUnit;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import com.qa.todolist.data.model.Category;
-import com.qa.todolist.data.model.Content;
-import com.qa.todolist.data.model.Title;
-import com.qa.todolist.data.model.Todo;
 import com.qa.todolist.frontend.category.CreateCategory;
 import com.qa.todolist.frontend.category.EditCategory;
 import com.qa.todolist.frontend.todo.EditTodo;
@@ -54,19 +50,9 @@ class FrontendTest {
     private static WebDriver driver;
     private static ExtentReports extentReport;
     private static ExtentSparkReporter sparkReporter;
-    private static ExtentTest test;
-    private static Category category;
-    private static Title title;
-    private static Content content;
-    private static Todo todo;
 
     @BeforeAll
     public static void init() {
-        category = new Category("Test Category");
-        title = new Title("Test Title");
-        content = new Content("Test Content");
-        todo = new Todo(title, content, category);
-
         extentReport = new ExtentReports();
         sparkReporter = new ExtentSparkReporter("./target/reports/Report.html");
         extentReport.attachReporter(sparkReporter);
