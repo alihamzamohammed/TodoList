@@ -11,6 +11,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>todolist</name>
 	<description>Demo project for Spring Boot</description>
+	<packaging>war</packaging>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -71,6 +72,18 @@
 			<artifactId>equalsverifier</artifactId>
 			<version>3.5.5</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>selenium-jupiter</artifactId>
+			<version>3.4.0</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
+		<dependency>
+			<groupId>com.aventstack</groupId>
+			<artifactId>extentreports</artifactId>
+			<version>5.0.7</version>
 		</dependency>
 	</dependencies>
 	<build>
