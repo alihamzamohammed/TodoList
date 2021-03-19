@@ -148,6 +148,21 @@ class FrontendTest {
     // void backendURLSetTest() {
     // }
 
+    // @Test
+    // void createCategoryNavTest() {}
+
+    // @Test
+    // void createTodoNavTest() {}
+
+    // @Test
+    // void editCategoryNavTest() {}
+
+    // @Test
+    // void editTodoNavTest() {}
+
+    // @Test
+    // void settingsNavTest() {}
+
     // @AfterEach
     // public void closeDriver() {
     // driver.close();
