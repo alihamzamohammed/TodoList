@@ -3,8 +3,8 @@ package com.qa.todolist.frontend;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.IOException;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import com.aventstack.extentreports.ExtentReports;
@@ -12,11 +12,11 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.qa.todolist.frontend.category.CreateCategory;
 import com.qa.todolist.frontend.category.EditCategory;
-import com.qa.todolist.frontend.todo.EditTodo;
 import com.qa.todolist.frontend.home.ReadCategory;
 import com.qa.todolist.frontend.home.ReadTodo;
 import com.qa.todolist.frontend.settings.SettingsPage;
 import com.qa.todolist.frontend.todo.CreateTodo;
+import com.qa.todolist.frontend.todo.EditTodo;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -32,7 +32,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.opentest4j.AssertionFailedError;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.web.server.LocalServerPort;
@@ -49,7 +48,7 @@ class FrontendTest {
 
     @LocalServerPort
     private int port;
-    @Value("${testing.frontend.url}")
+
     private static String frontendURL;
     private static WebDriver driver;
     private static ExtentReports extentReport;
@@ -72,11 +71,14 @@ class FrontendTest {
 
         driver = new ChromeDriver(cOptions);
         driver.manage().window().setSize(new Dimension(1366, 768));
-        driver.get(frontendURL + "index.html");
+        // driver.get(frontendURL + "index.html");
     }
 
     @BeforeEach
-    public void foundation() throws TimeoutException {
+    public void foundation() throws TimeoutException, IOException {
+        Properties prop = new Properties();
+        prop.load(this.getClass().getClassLoader().getResourceAsStream("application-test.properties"));
+        frontendURL = prop.getProperty("testing.frontend.url");
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
         driver.get(frontendURL + "index.html");
         driver.manage().addCookie(new Cookie("serverurl", "http://localhost:" + port));
