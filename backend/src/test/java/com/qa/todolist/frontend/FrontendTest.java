@@ -3,6 +3,8 @@ package com.qa.todolist.frontend;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
 
 import com.aventstack.extentreports.ExtentReports;
@@ -46,13 +48,15 @@ class FrontendTest {
 
     @LocalServerPort
     private int port;
-    private static String frontendURL = "http://localhost:5500/frontend/";
+    private static String frontendURL = "file://frontend/";
     private static WebDriver driver;
     private static ExtentReports extentReport;
     private static ExtentSparkReporter sparkReporter;
 
     @BeforeAll
     public static void init() {
+        Path frontendPath = Paths.get("../frontend/");
+        frontendURL = frontendPath.toAbsolutePath().toString() + "/";
         extentReport = new ExtentReports();
         sparkReporter = new ExtentSparkReporter("./target/reports/Report.html");
         extentReport.attachReporter(sparkReporter);
