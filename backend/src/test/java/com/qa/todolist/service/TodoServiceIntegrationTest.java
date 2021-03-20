@@ -16,7 +16,6 @@ import com.qa.todolist.data.repository.TodoRepository;
 import com.qa.todolist.dto.ContentDTO;
 import com.qa.todolist.dto.TitleDTO;
 import com.qa.todolist.dto.TodoDTO;
-import com.qa.todolist.mapper.CategoryMapper;
 import com.qa.todolist.mapper.ContentMapper;
 import com.qa.todolist.mapper.TitleMapper;
 import com.qa.todolist.mapper.TodoMapper;
