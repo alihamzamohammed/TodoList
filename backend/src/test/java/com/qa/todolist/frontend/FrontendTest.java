@@ -57,7 +57,7 @@ class FrontendTest {
     @BeforeAll
     public static void init() {
         extentReport = new ExtentReports();
-        sparkReporter = new ExtentSparkReporter("./target/reports/Report.html");
+        sparkReporter = new ExtentSparkReporter("./reports/frontend/Report.html");
         extentReport.attachReporter(sparkReporter);
 
         System.setProperty("webdriver.chrome.driver", "src//test//resources//driver//chromedriver.exe");
@@ -95,7 +95,7 @@ class FrontendTest {
             throw e;
         }
 
-        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/CategoryIdTest.png"));
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./reports/frontend/screenshots/CategoryIdTest.png"));
         test.pass("Category ID Test passed");
     }
 
@@ -111,7 +111,7 @@ class FrontendTest {
             throw e;
         }
 
-        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/CategoryNameTest.png"));
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./reports/frontend/screenshots/CategoryNameTest.png"));
         test.pass("Category Name Test passed");
     }
 
@@ -127,7 +127,8 @@ class FrontendTest {
             test.fail("Create Category Create Button Test failed\nError: " + e);
             throw e;
         }
-        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/CreateCategoryCreateButtonTest.png"));
+        test.addScreenCaptureFromPath(
+                Helper.snapShot(driver, "./reports/frontend/screenshots/CreateCategoryCreateButtonTest.png"));
         test.pass("Create Category Create Button Test passed");
     }
 
@@ -141,7 +142,8 @@ class FrontendTest {
             test.fail("Create Category Reset Button Test failed\nError: " + e);
             throw e;
         }
-        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/CreateCategoryResetButtonTest.png"));
+        test.addScreenCaptureFromPath(
+                Helper.snapShot(driver, "./reports/frontend/screenshots/CreateCategoryResetButtonTest.png"));
         test.pass("Create Category Reset Button Test passed");
     }
 
@@ -155,7 +157,8 @@ class FrontendTest {
             test.fail("Create Category Discard Button Test failed\nError: " + e);
             throw e;
         }
-        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/CreateCategoryDiscardButtonTest.png"));
+        test.addScreenCaptureFromPath(
+                Helper.snapShot(driver, "./reports/frontend/screenshots/CreateCategoryDiscardButtonTest.png"));
         test.pass("Create Category Discard Button Test passed");
     }
 
@@ -171,7 +174,8 @@ class FrontendTest {
             test.fail("Edit Category Update Button Test failed\nError: " + e);
             throw e;
         }
-        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/EditCategoryUpdateButtonTest.png"));
+        test.addScreenCaptureFromPath(
+                Helper.snapShot(driver, "./reports/frontend/screenshots/EditCategoryUpdateButtonTest.png"));
         test.pass("Edit Category Update Button Test passed");
     }
 
@@ -185,7 +189,8 @@ class FrontendTest {
             test.fail("Edit Category Reset Button Test failed\nError: " + e);
             throw e;
         }
-        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/EditCategoryResetButtonTest.png"));
+        test.addScreenCaptureFromPath(
+                Helper.snapShot(driver, "./reports/frontend/screenshots/EditCategoryResetButtonTest.png"));
         test.pass("Edit Category Reset Button Test passed");
     }
 
@@ -199,7 +204,8 @@ class FrontendTest {
             test.fail("Edit Category Cancel Button Test failed\nError: " + e);
             throw e;
         }
-        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/EditCategoryCancelButtonTest.png"));
+        test.addScreenCaptureFromPath(
+                Helper.snapShot(driver, "./reports/frontend/screenshots/EditCategoryCancelButtonTest.png"));
         test.pass("Edit Category Cancel Button Test passed");
     }
 
@@ -218,7 +224,8 @@ class FrontendTest {
             test.fail("Edit Category Delete Button Test failed\nError: " + e);
             throw e;
         }
-        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/EditCategoryDeleteButtonTest.png"));
+        test.addScreenCaptureFromPath(
+                Helper.snapShot(driver, "./reports/frontend/screenshots/EditCategoryDeleteButtonTest.png"));
         test.pass("Edit Category Delete Button Test passed");
     }
 
@@ -233,7 +240,7 @@ class FrontendTest {
             throw e;
         }
 
-        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/TodoIdTest.png"));
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./reports/frontend/screenshots/TodoIdTest.png"));
         test.pass("Todo ID Test passed");
     }
 
@@ -248,7 +255,7 @@ class FrontendTest {
             throw e;
         }
 
-        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/TodoTitleTest.png"));
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./reports/frontend/screenshots/TodoTitleTest.png"));
         test.pass("Todo Title Test passed");
     }
 
@@ -263,7 +270,7 @@ class FrontendTest {
             throw e;
         }
 
-        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/TodoContentTest.png"));
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./reports/frontend/screenshots/TodoContentTest.png"));
         test.pass("Todo Content Test passed");
     }
 
@@ -281,7 +288,8 @@ class FrontendTest {
             test.fail("Create Todo Create Button Test failed\nError: " + e);
             throw e;
         }
-        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/CreateTodoCreateButtonTest.png"));
+        test.addScreenCaptureFromPath(
+                Helper.snapShot(driver, "./reports/frontend/screenshots/CreateTodoCreateButtonTest.png"));
         test.pass("Create Todo Create Button Test passed");
     }
 
@@ -295,7 +303,8 @@ class FrontendTest {
             test.fail("Create Todo Reset Button Test failed\nError: " + e);
             throw e;
         }
-        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/CreateTodoResetButtonTest.png"));
+        test.addScreenCaptureFromPath(
+                Helper.snapShot(driver, "./reports/frontend/screenshots/CreateTodoResetButtonTest.png"));
         test.pass("Create Todo Reset Button Test passed");
     }
 
@@ -309,7 +318,8 @@ class FrontendTest {
             test.fail("Create Todo Discard Button Test failed\nError: " + e);
             throw e;
         }
-        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/CreateTodoDiscardButtonTest.png"));
+        test.addScreenCaptureFromPath(
+                Helper.snapShot(driver, "./reports/frontend/screenshots/CreateTodoDiscardButtonTest.png"));
         test.pass("Create Todo Discard Button Test passed");
     }
 
@@ -326,7 +336,8 @@ class FrontendTest {
             test.fail("Edit Todo Update Button Test failed\nError: " + e);
             throw e;
         }
-        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/EditTodoUpdateButtonTest.png"));
+        test.addScreenCaptureFromPath(
+                Helper.snapShot(driver, "./reports/frontend/screenshots/EditTodoUpdateButtonTest.png"));
         test.pass("Edit Todo Update Button Test passed");
     }
 
@@ -340,7 +351,8 @@ class FrontendTest {
             test.fail("Edit Todo Reset Button Test failed\nError: " + e);
             throw e;
         }
-        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/EditTodoResetButtonTest.png"));
+        test.addScreenCaptureFromPath(
+                Helper.snapShot(driver, "./reports/frontend/screenshots/EditTodoResetButtonTest.png"));
         test.pass("Edit Todo Reset Button Test passed");
     }
 
@@ -354,7 +366,8 @@ class FrontendTest {
             test.fail("Edit Todo Cancel Button Test failed\nError: " + e);
             throw e;
         }
-        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/EditTodoCancelButtonTest.png"));
+        test.addScreenCaptureFromPath(
+                Helper.snapShot(driver, "./reports/frontend/screenshots/EditTodoCancelButtonTest.png"));
         test.pass("Edit Todo Cancel Button Test passed");
     }
 
@@ -373,7 +386,8 @@ class FrontendTest {
             test.fail("Edit Todo Delete Button Test failed\nError: " + e);
             throw e;
         }
-        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/EditTodoDeleteButtonTest.png"));
+        test.addScreenCaptureFromPath(
+                Helper.snapShot(driver, "./reports/frontend/screenshots/EditTodoDeleteButtonTest.png"));
         test.pass("Edit Todo Delete Button Test passed");
     }
 
@@ -388,7 +402,8 @@ class FrontendTest {
             test.fail("Settings Backend URL Set Test failed\nError: " + e);
             throw e;
         }
-        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/SettingsBackendURLSetTest.png"));
+        test.addScreenCaptureFromPath(
+                Helper.snapShot(driver, "./reports/frontend/screenshots/SettingsBackendURLSetTest.png"));
         test.pass("Settings Backend URL Set Test passed");
     }
 
@@ -403,7 +418,8 @@ class FrontendTest {
             test.fail("Settings Backend URL Get Test failed\nError: " + e);
             throw e;
         }
-        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/SettingsBackendURLGetTest.png"));
+        test.addScreenCaptureFromPath(
+                Helper.snapShot(driver, "./reports/frontend/screenshots/SettingsBackendURLGetTest.png"));
         test.pass("Settings Backend URL Get Test passed");
     }
 
@@ -417,7 +433,8 @@ class FrontendTest {
             test.fail("Create Category Navigation Test failed\nError: " + e);
             throw e;
         }
-        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/CreateCategoryNavigationTest.png"));
+        test.addScreenCaptureFromPath(
+                Helper.snapShot(driver, "./reports/frontend/screenshots/CreateCategoryNavigationTest.png"));
         test.pass("Create Category Navigation Test passed");
     }
 
@@ -431,7 +448,8 @@ class FrontendTest {
             test.fail("Create Todo Navigation Test failed\nError: " + e);
             throw e;
         }
-        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/CreateTodoNavigationTest.png"));
+        test.addScreenCaptureFromPath(
+                Helper.snapShot(driver, "./reports/frontend/screenshots/CreateTodoNavigationTest.png"));
         test.pass("Create Todo Navigation Test passed");
 
     }
@@ -446,7 +464,8 @@ class FrontendTest {
             test.fail("Edit Category Navigation Test failed\nError: " + e);
             throw e;
         }
-        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/EditCategoryNavigationTest.png"));
+        test.addScreenCaptureFromPath(
+                Helper.snapShot(driver, "./reports/frontend/screenshots/EditCategoryNavigationTest.png"));
         test.pass("Edit Category Navigation Test passed");
     }
 
@@ -460,7 +479,8 @@ class FrontendTest {
             test.fail("Edit Todo Navigation Test failed\nError: " + e);
             throw e;
         }
-        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/EditTodoNavigationTest.png"));
+        test.addScreenCaptureFromPath(
+                Helper.snapShot(driver, "./reports/frontend/screenshots/EditTodoNavigationTest.png"));
         test.pass("Edit Todo Navigation Test passed");
     }
 
@@ -474,7 +494,8 @@ class FrontendTest {
             test.fail("Settings Navigation Test failed\nError: " + e);
             throw e;
         }
-        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/SettingsNavigationTest.png"));
+        test.addScreenCaptureFromPath(
+                Helper.snapShot(driver, "./reports/frontend/screenshots/SettingsNavigationTest.png"));
         test.pass("Settings Navigation Test passed");
     }
 
@@ -489,7 +510,7 @@ class FrontendTest {
             test.fail("Home Navigation Test failed\nError: " + e);
             throw e;
         }
-        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./target/reports/HomeNavigationTest.png"));
+        test.addScreenCaptureFromPath(Helper.snapShot(driver, "./reports/frontend/screenshots/HomeNavigationTest.png"));
         test.pass("Home Navigation Test passed");
     }
 
