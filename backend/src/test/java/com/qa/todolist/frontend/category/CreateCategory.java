@@ -8,9 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CreateCategory {
 
-    private static String frontendURL = "http://localhost:5500/frontend/";
-
-    public static Boolean create(String title, WebDriver driver) {
+    public static Boolean create(String title, WebDriver driver, String frontendURL) {
         driver.get(frontendURL + "createCategory.html");
         WebElement titleInput = driver.findElement(By.id("title-input"));
         titleInput.sendKeys(title);
@@ -21,7 +19,7 @@ public class CreateCategory {
         return driver.findElement(response).getText().startsWith("Category successfully created!");
     }
 
-    public static Boolean reset(String title, WebDriver driver) {
+    public static Boolean reset(String title, WebDriver driver, String frontendURL) {
         driver.get(frontendURL + "createCategory.html");
         WebElement titleInput = driver.findElement(By.id("title-input"));
         titleInput.sendKeys(title);
@@ -30,7 +28,7 @@ public class CreateCategory {
         return titleInput.getAttribute("value").equals("");
     }
 
-    public static Boolean discard(String title, WebDriver driver) {
+    public static Boolean discard(String title, WebDriver driver, String frontendURL) {
         driver.get(frontendURL + "createCategory.html");
         WebElement titleInput = driver.findElement(By.id("title-input"));
         titleInput.sendKeys(title);

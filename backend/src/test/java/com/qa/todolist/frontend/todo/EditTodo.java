@@ -8,9 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class EditTodo {
 
-    private static String frontendURL = "http://localhost:5500/frontend/";
-
-    public static Boolean update(String title, String content, WebDriver driver) {
+    public static Boolean update(String title, String content, WebDriver driver, String frontendURL) {
         driver.get(frontendURL + "editTodo.html?id=" + 1);
         WebElement titleInput = driver.findElement(By.id("title-input"));
         titleInput.clear();
@@ -25,7 +23,7 @@ public class EditTodo {
         return driver.findElement(response).getText().startsWith("To-Do Item successfully updated!");
     }
 
-    public static Boolean reset(String title, String content, WebDriver driver) {
+    public static Boolean reset(String title, String content, WebDriver driver, String frontendURL) {
         driver.get(frontendURL + "editTodo.html?id=" + 1);
         By titleSelector = By.id("title-input");
         new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(titleSelector));
@@ -38,14 +36,14 @@ public class EditTodo {
         return titleInput.getAttribute("value").equals("");
     }
 
-    public static Boolean cancel(WebDriver driver) {
+    public static Boolean cancel(WebDriver driver, String frontendURL) {
         driver.get(frontendURL + "editTodo.html?id=" + 1);
         WebElement cancelButton = driver.findElement(By.id("cancel-button"));
         cancelButton.click();
         return driver.getCurrentUrl().endsWith("index.html");
     }
 
-    public static Boolean delete(WebDriver driver) {
+    public static Boolean delete(WebDriver driver, String frontendURL) {
         driver.get(frontendURL + "editTodo.html?id=" + 1);
         WebElement deleteButton = driver.findElement(By.id("delete-button"));
         deleteButton.click();

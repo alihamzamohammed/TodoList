@@ -8,8 +8,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Navigation {
 
-    private static String frontendURL = "http://localhost:5500/frontend/";
-
     public static Boolean home(String page, WebDriver driver) {
         Actions actions = new Actions(driver);
         actions.moveToElement(driver.findElement(By.xpath("/html/body/nav/div/div/ul/li[1]/a"))).click().build()
@@ -41,7 +39,7 @@ public class Navigation {
         return driver.getCurrentUrl().endsWith(page);
     }
 
-    public static Boolean editTodo(String page, WebDriver driver) {
+    public static Boolean editTodo(String page, WebDriver driver, String frontendURL) {
         // CreateTodo.create("title", "content", 1, driver);
         driver.get(frontendURL + "index.html");
         Actions actions = new Actions(driver);

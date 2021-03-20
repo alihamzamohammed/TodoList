@@ -9,9 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CreateTodo {
 
-    private static String frontendURL = "http://localhost:5500/frontend/";
-
-    public static Boolean create(String title, String content, int category, WebDriver driver) {
+    public static Boolean create(String title, String content, int category, WebDriver driver, String frontendURL) {
         driver.get(frontendURL + "createTodo.html");
         WebElement titleInput = driver.findElement(By.id("title-input"));
         titleInput.sendKeys(title);
@@ -26,7 +24,7 @@ public class CreateTodo {
         return driver.findElement(response).getText().startsWith("To-Do Item successfully created!");
     }
 
-    public static Boolean reset(String title, String content, WebDriver driver) {
+    public static Boolean reset(String title, String content, WebDriver driver, String frontendURL) {
         driver.get(frontendURL + "createTodo.html");
         WebElement titleInput = driver.findElement(By.id("title-input"));
         titleInput.sendKeys(title);
@@ -37,7 +35,7 @@ public class CreateTodo {
         return titleInput.getAttribute("value").equals("") && contentInput.getAttribute("value").equals("");
     }
 
-    public static Boolean discard(String title, String content, WebDriver driver) {
+    public static Boolean discard(String title, String content, WebDriver driver, String frontendURL) {
         driver.get(frontendURL + "createTodo.html");
         WebElement titleInput = driver.findElement(By.id("title-input"));
         titleInput.sendKeys(title);

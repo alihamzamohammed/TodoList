@@ -32,6 +32,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.opentest4j.AssertionFailedError;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.web.server.LocalServerPort;
@@ -48,15 +49,14 @@ class FrontendTest {
 
     @LocalServerPort
     private int port;
-    private static String frontendURL = "file://frontend/";
+    @Value("${testing.frontend.url}")
+    private static String frontendURL;
     private static WebDriver driver;
     private static ExtentReports extentReport;
     private static ExtentSparkReporter sparkReporter;
 
     @BeforeAll
     public static void init() {
-        Path frontendPath = Paths.get("../frontend/");
-        frontendURL = frontendPath.toAbsolutePath().toString() + "/";
         extentReport = new ExtentReports();
         sparkReporter = new ExtentSparkReporter("./target/reports/Report.html");
         extentReport.attachReporter(sparkReporter);
@@ -118,7 +118,7 @@ class FrontendTest {
         ExtentTest test = extentReport.createTest("Create Category Create Button Test");
         test.assignAuthor("Ali Hamza M");
         try {
-            CreateCategory.create("new category", driver);
+            CreateCategory.create("new category", driver, frontendURL);
             driver.get(frontendURL + "index.html");
             assertThat(ReadCategory.findName(2, driver)).isEqualTo("new category");
         } catch (Exception | AssertionFailedError e) {
@@ -134,7 +134,7 @@ class FrontendTest {
         ExtentTest test = extentReport.createTest("Create Category Reset Button Test");
         test.assignAuthor("Ali Hamza M");
         try {
-            assertThat(CreateCategory.reset("new category", driver)).isTrue();
+            assertThat(CreateCategory.reset("new category", driver, frontendURL)).isTrue();
         } catch (Exception | AssertionFailedError e) {
             test.fail("Create Category Reset Button Test failed\nError: " + e);
             throw e;
@@ -148,7 +148,7 @@ class FrontendTest {
         ExtentTest test = extentReport.createTest("Create Category Discard Button Test");
         test.assignAuthor("Ali Hamza M");
         try {
-            assertThat(CreateCategory.discard("new category", driver)).isTrue();
+            assertThat(CreateCategory.discard("new category", driver, frontendURL)).isTrue();
         } catch (Exception | AssertionFailedError e) {
             test.fail("Create Category Discard Button Test failed\nError: " + e);
             throw e;
@@ -162,7 +162,7 @@ class FrontendTest {
         ExtentTest test = extentReport.createTest("Edit Category Update Button Test");
         test.assignAuthor("Ali Hamza M");
         try {
-            EditCategory.update("updated category", driver);
+            EditCategory.update("updated category", driver, frontendURL);
             driver.get(frontendURL + "index.html");
             assertThat(ReadCategory.findName(1, driver)).isEqualTo("updated category");
         } catch (Exception | AssertionFailedError e) {
@@ -178,7 +178,7 @@ class FrontendTest {
         ExtentTest test = extentReport.createTest("Edit Category Reset Button Test");
         test.assignAuthor("Ali Hamza M");
         try {
-            assertThat(EditCategory.reset("updated category", driver)).isTrue();
+            assertThat(EditCategory.reset("updated category", driver, frontendURL)).isTrue();
         } catch (Exception | AssertionFailedError e) {
             test.fail("Edit Category Reset Button Test failed\nError: " + e);
             throw e;
@@ -192,7 +192,7 @@ class FrontendTest {
         ExtentTest test = extentReport.createTest("Edit Category Cancel Button Test");
         test.assignAuthor("Ali Hamza M");
         try {
-            assertThat(EditCategory.cancel(driver)).isTrue();
+            assertThat(EditCategory.cancel(driver, frontendURL)).isTrue();
         } catch (Exception | AssertionFailedError e) {
             test.fail("Edit Category Cancel Button Test failed\nError: " + e);
             throw e;
@@ -207,7 +207,7 @@ class FrontendTest {
         test.assignAuthor("Ali Hamza M");
         try {
             By category = By.id("category-1");
-            assertThat(EditCategory.delete(driver)).isTrue();
+            assertThat(EditCategory.delete(driver, frontendURL)).isTrue();
             driver.get(frontendURL + "index.html");
             assertThrows(NoSuchElementException.class, () -> {
                 driver.findElement(category);
@@ -270,7 +270,7 @@ class FrontendTest {
         ExtentTest test = extentReport.createTest("Create Todo Create Button Test");
         test.assignAuthor("Ali Hamza M");
         try {
-            CreateTodo.create("new todo", "new todo contents", 1, driver);
+            CreateTodo.create("new todo", "new todo contents", 1, driver, frontendURL);
             driver.get(frontendURL + "index.html");
             assertThat(ReadTodo.findTitle(2, driver)).isEqualTo("new todo");
             assertThat(ReadTodo.findContent(2, driver)).isEqualTo("new todo contents");
@@ -288,7 +288,7 @@ class FrontendTest {
         ExtentTest test = extentReport.createTest("Create Todo Reset Button Test");
         test.assignAuthor("Ali Hamza M");
         try {
-            assertThat(CreateTodo.reset("new todo", "new todo contents", driver)).isTrue();
+            assertThat(CreateTodo.reset("new todo", "new todo contents", driver, frontendURL)).isTrue();
         } catch (Exception | AssertionFailedError e) {
             test.fail("Create Todo Reset Button Test failed\nError: " + e);
             throw e;
@@ -302,7 +302,7 @@ class FrontendTest {
         ExtentTest test = extentReport.createTest("Create Todo Discard Button Test");
         test.assignAuthor("Ali Hamza M");
         try {
-            assertThat(CreateTodo.discard("new todo", "new todo contents", driver)).isTrue();
+            assertThat(CreateTodo.discard("new todo", "new todo contents", driver, frontendURL)).isTrue();
         } catch (Exception | AssertionFailedError e) {
             test.fail("Create Todo Discard Button Test failed\nError: " + e);
             throw e;
@@ -316,7 +316,7 @@ class FrontendTest {
         ExtentTest test = extentReport.createTest("Edit Todo Update Button Test");
         test.assignAuthor("Ali Hamza M");
         try {
-            EditTodo.update("updated todo", "updated todo content", driver);
+            EditTodo.update("updated todo", "updated todo content", driver, frontendURL);
             driver.get(frontendURL + "index.html");
             assertThat(ReadTodo.findTitle(1, driver)).isEqualTo("updated todo");
             assertThat(ReadTodo.findContent(1, driver)).isEqualTo("updated todo content");
@@ -333,7 +333,7 @@ class FrontendTest {
         ExtentTest test = extentReport.createTest("Edit Todo Reset Button Test");
         test.assignAuthor("Ali Hamza M");
         try {
-            assertThat(EditTodo.reset("updated todo", "updated todo content", driver)).isTrue();
+            assertThat(EditTodo.reset("updated todo", "updated todo content", driver, frontendURL)).isTrue();
         } catch (Exception | AssertionFailedError e) {
             test.fail("Edit Todo Reset Button Test failed\nError: " + e);
             throw e;
@@ -347,7 +347,7 @@ class FrontendTest {
         ExtentTest test = extentReport.createTest("Edit Todo Cancel Button Test");
         test.assignAuthor("Ali Hamza M");
         try {
-            assertThat(EditTodo.cancel(driver)).isTrue();
+            assertThat(EditTodo.cancel(driver, frontendURL)).isTrue();
         } catch (Exception | AssertionFailedError e) {
             test.fail("Edit Todo Cancel Button Test failed\nError: " + e);
             throw e;
@@ -362,7 +362,7 @@ class FrontendTest {
         test.assignAuthor("Ali Hamza M");
         try {
             By todo = By.id("todo-1");
-            assertThat(EditTodo.delete(driver)).isTrue();
+            assertThat(EditTodo.delete(driver, frontendURL)).isTrue();
             driver.get(frontendURL + "index.html");
             assertThrows(NoSuchElementException.class, () -> {
                 driver.findElement(todo);
@@ -380,7 +380,7 @@ class FrontendTest {
         ExtentTest test = extentReport.createTest("Settings Backend URL Set Test");
         test.assignAuthor("Ali Hamza M");
         try {
-            SettingsPage.setUrl("http://localhost:2342", driver);
+            SettingsPage.setUrl("http://localhost:2342", driver, frontendURL);
             assertThat(driver.manage().getCookieNamed("serverurl").getValue()).isEqualTo("http://localhost:2342");
         } catch (Exception | AssertionFailedError e) {
             test.fail("Settings Backend URL Set Test failed\nError: " + e);
@@ -396,7 +396,7 @@ class FrontendTest {
         test.assignAuthor("Ali Hamza M");
         try {
             String backendUrl = driver.manage().getCookieNamed("serverurl").getValue();
-            assertThat(SettingsPage.getUrl(backendUrl, driver)).isTrue();
+            assertThat(SettingsPage.getUrl(backendUrl, driver, frontendURL)).isTrue();
         } catch (Exception | AssertionFailedError e) {
             test.fail("Settings Backend URL Get Test failed\nError: " + e);
             throw e;
@@ -453,7 +453,7 @@ class FrontendTest {
         ExtentTest test = extentReport.createTest("Edit Todo Navigation Test");
         test.assignAuthor("Ali Hamza M");
         try {
-            assertThat(Navigation.editTodo("editTodo.html?id=1", driver)).isTrue();
+            assertThat(Navigation.editTodo("editTodo.html?id=1", driver, frontendURL)).isTrue();
         } catch (Exception | AssertionFailedError e) {
             test.fail("Edit Todo Navigation Test failed\nError: " + e);
             throw e;
