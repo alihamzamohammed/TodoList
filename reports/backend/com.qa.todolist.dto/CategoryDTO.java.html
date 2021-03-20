@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CategoryDTO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">todolist</a> &gt; <a href="index.source.html" class="el_package">com.qa.todolist.dto</a> &gt; <span class="el_source">CategoryDTO.java</span></div><h1>CategoryDTO.java</h1><pre class="source lang-java linenums">package com.qa.todolist.dto;
+
+import java.util.List;
+
+public class CategoryDTO {
+
+	private int id;
+
+	private String name;
+
+	private List&lt;TodoDTO&gt; todos;
+
+<span class="fc" id="L13">	public CategoryDTO() {</span>
+<span class="fc" id="L14">	}</span>
+
+<span class="fc" id="L16">	public CategoryDTO(String name) {</span>
+<span class="fc" id="L17">		this.name = name;</span>
+<span class="fc" id="L18">	}</span>
+
+<span class="fc" id="L20">	public CategoryDTO(int id, String name) {</span>
+<span class="fc" id="L21">		this.id = id;</span>
+<span class="fc" id="L22">		this.name = name;</span>
+<span class="fc" id="L23">	}</span>
+
+	public int getId() {
+<span class="fc" id="L26">		return this.id;</span>
+	}
+
+	public void setId(int id) {
+<span class="fc" id="L30">		this.id = id;</span>
+<span class="fc" id="L31">	}</span>
+
+	public String getName() {
+<span class="fc" id="L34">		return this.name;</span>
+	}
+
+	public void setName(String name) {
+<span class="fc" id="L38">		this.name = name;</span>
+<span class="fc" id="L39">	}</span>
+
+	public List&lt;TodoDTO&gt; getTodos() {
+<span class="fc" id="L42">		return this.todos;</span>
+	}
+
+	public void setTodos(List&lt;TodoDTO&gt; todos) {
+<span class="fc" id="L46">		this.todos = todos;</span>
+<span class="fc" id="L47">	}</span>
+
+	@Override
+	public String toString() {
+<span class="fc" id="L51">		return &quot;CategoryDTO [name=&quot; + name + &quot;, todos=&quot; + todos + &quot;]&quot;;</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L56">		final int prime = 31;</span>
+<span class="fc" id="L57">		int result = 1;</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">		result = prime * result + ((name == null) ? 0 : name.hashCode());</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">		result = prime * result + ((todos == null) ? 0 : todos.hashCode());</span>
+<span class="fc" id="L60">		return result;</span>
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+<span class="fc bfc" id="L65" title="All 2 branches covered.">		if (this == obj)</span>
+<span class="fc" id="L66">			return true;</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">		if (obj == null)</span>
+<span class="fc" id="L68">			return false;</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">		if (getClass() != obj.getClass())</span>
+<span class="fc" id="L70">			return false;</span>
+<span class="fc" id="L71">		CategoryDTO other = (CategoryDTO) obj;</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">		if (name == null) {</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">			if (other.name != null)</span>
+<span class="fc" id="L74">				return false;</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">		} else if (!name.equals(other.name))</span>
+<span class="fc" id="L76">			return false;</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">		if (todos == null) {</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">			if (other.todos != null)</span>
+<span class="fc" id="L79">				return false;</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">		} else if (!todos.equals(other.todos))</span>
+<span class="fc" id="L81">			return false;</span>
+<span class="fc" id="L82">		return true;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

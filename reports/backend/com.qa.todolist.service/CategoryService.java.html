@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CategoryService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">todolist</a> &gt; <a href="index.source.html" class="el_package">com.qa.todolist.service</a> &gt; <span class="el_source">CategoryService.java</span></div><h1>CategoryService.java</h1><pre class="source lang-java linenums">package com.qa.todolist.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import com.qa.todolist.data.model.Category;
+import com.qa.todolist.data.repository.CategoryRepository;
+import com.qa.todolist.dto.CategoryDTO;
+import com.qa.todolist.exceptions.CategoryAlreadyExistsException;
+import com.qa.todolist.exceptions.CategoryNotFoundException;
+import com.qa.todolist.mapper.CategoryMapper;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class CategoryService {
+
+    private CategoryRepository categoryRepository;
+    private CategoryMapper categoryMapper;
+
+    @Autowired
+<span class="fc" id="L24">    public CategoryService(CategoryRepository categoryRepository, CategoryMapper categoryMapper) {</span>
+<span class="fc" id="L25">        this.categoryRepository = categoryRepository;</span>
+<span class="fc" id="L26">        this.categoryMapper = categoryMapper;</span>
+<span class="fc" id="L27">    }</span>
+
+    public List&lt;CategoryDTO&gt; readAllCategories() {
+<span class="fc" id="L30">        List&lt;Category&gt; categories = categoryRepository.findAll();</span>
+<span class="fc" id="L31">        List&lt;CategoryDTO&gt; categoryDTOs = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L32">        categories.forEach(cat -&gt; categoryDTOs.add(categoryMapper.mapToDTO(cat)));</span>
+<span class="fc" id="L33">        return categoryDTOs;</span>
+    }
+
+    public CategoryDTO readById(int id) {
+<span class="fc" id="L37">        Optional&lt;Category&gt; category = categoryRepository.findById(id);</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if (category.isPresent()) {</span>
+<span class="fc" id="L39">            return categoryMapper.mapToDTO(category.get());</span>
+        } else {
+<span class="fc" id="L41">            throw new CategoryNotFoundException();</span>
+        }
+    }
+
+    public CategoryDTO createCategory(Category category) {
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        if (!categoryRepository.existsByName(category.getName())) {</span>
+<span class="fc" id="L47">            return categoryMapper.mapToDTO(categoryRepository.save(category));</span>
+        } else {
+<span class="fc" id="L49">            throw new CategoryAlreadyExistsException();</span>
+        }
+    }
+
+    public CategoryDTO updateCategory(int id, Category category) {
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        if (categoryRepository.existsByName(category.getName())) {</span>
+<span class="fc" id="L55">            throw new CategoryAlreadyExistsException();</span>
+        }
+<span class="fc" id="L57">        Optional&lt;Category&gt; optional = categoryRepository.findById(id);</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        if (optional.isPresent()) {</span>
+<span class="fc" id="L59">            Category catToUpdate = optional.get();</span>
+<span class="fc" id="L60">            catToUpdate.setName(category.getName());</span>
+<span class="fc" id="L61">            return categoryMapper.mapToDTO(categoryRepository.save(catToUpdate));</span>
+        } else {
+<span class="fc" id="L63">            throw new CategoryNotFoundException();</span>
+        }
+    }
+
+    public Boolean deleteCategory(int id) {
+<span class="fc bfc" id="L68" title="All 2 branches covered.">        if (categoryRepository.existsById(id)) {</span>
+<span class="fc" id="L69">            categoryRepository.deleteById(id);</span>
+        } else {
+<span class="fc" id="L71">            throw new CategoryNotFoundException();</span>
+        }
+<span class="pc bpc" id="L73" title="1 of 2 branches missed.">        return !categoryRepository.existsById(id);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
