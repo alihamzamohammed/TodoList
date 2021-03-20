@@ -1,25 +1,23 @@
 package com.qa.todolist.dto;
 
-import java.util.Objects;
-
 public class TitleDTO {
 
-    private String todoTitle;
+	private String todoTitle;
 
-    public TitleDTO() {
-    }
+	public TitleDTO() {
+	}
 
-    public TitleDTO(String todoTitle) {
-        this.todoTitle = todoTitle;
-    }
+	public TitleDTO(String todoTitle) {
+		this.todoTitle = todoTitle;
+	}
 
-    public String getTodoTitle() {
-        return this.todoTitle;
-    }
+	public String getTodoTitle() {
+		return this.todoTitle;
+	}
 
-    public void setTodoTitle(String todoTitle) {
-        this.todoTitle = todoTitle;
-    }
+	public void setTodoTitle(String todoTitle) {
+		this.todoTitle = todoTitle;
+	}
 
 	@Override
 	public String toString() {
@@ -50,7 +48,5 @@ public class TitleDTO {
 			return false;
 		return true;
 	}
-
-    
 
 }
