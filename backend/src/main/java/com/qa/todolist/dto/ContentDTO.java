@@ -1,7 +1,5 @@
 package com.qa.todolist.dto;
 
-import java.util.Objects;
-
 public class ContentDTO {
 
     private String todoContent;

@@ -8,9 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class EditCategory {
 
-    private static String frontendURL = "http://localhost:5500/frontend/";
-
-    public static Boolean update(String name, WebDriver driver) {
+    public static Boolean update(String name, WebDriver driver, String frontendURL) {
         driver.get(frontendURL + "editCategory.html?id=" + 1);
         WebElement nameInput = driver.findElement(By.id("name-input"));
         nameInput.clear();
@@ -22,7 +20,7 @@ public class EditCategory {
         return driver.findElement(response).getText().startsWith("Category successfully updated!");
     }
 
-    public static Boolean reset(String name, WebDriver driver) {
+    public static Boolean reset(String name, WebDriver driver, String frontendURL) {
         driver.get(frontendURL + "editCategory.html?id=" + 1);
         WebElement nameInput = driver.findElement(By.id("name-input"));
         nameInput.sendKeys(name);
@@ -31,14 +29,14 @@ public class EditCategory {
         return nameInput.getAttribute("value").equals("");
     }
 
-    public static Boolean cancel(WebDriver driver) {
+    public static Boolean cancel(WebDriver driver, String frontendURL) {
         driver.get(frontendURL + "editCategory.html?id=" + 1);
         WebElement cancelButton = driver.findElement(By.id("cancel-button"));
         cancelButton.click();
         return driver.getCurrentUrl().endsWith("index.html");
     }
 
-    public static Boolean delete(WebDriver driver) {
+    public static Boolean delete(WebDriver driver, String frontendURL) {
         driver.get(frontendURL + "editCategory.html?id=" + 1);
         WebElement deleteButton = driver.findElement(By.id("delete-button"));
         deleteButton.click();

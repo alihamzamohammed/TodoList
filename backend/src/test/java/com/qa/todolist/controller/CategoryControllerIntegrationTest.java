@@ -6,7 +6,6 @@ import java.util.List;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qa.todolist.data.model.Category;
 import com.qa.todolist.dto.CategoryDTO;
-import com.qa.todolist.mapper.CategoryMapper;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +34,8 @@ class CategoryControllerIntegrationTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-    private Category validCategory = new Category(1, "test", List.of());
     private CategoryDTO validCategoryDTO = new CategoryDTO(1, "test");
 
-    private List<Category> validCategories = List.of(validCategory);
     private List<CategoryDTO> validCategoryDTOs = List.of(validCategoryDTO);
 
     @Test

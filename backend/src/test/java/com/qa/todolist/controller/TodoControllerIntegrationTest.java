@@ -43,10 +43,8 @@ class TodoControllerIntegrationTest {
     private TitleDTO titleDTO = new TitleDTO("test");
     private ContentDTO contentDTO = new ContentDTO("test");
     private Category category = new Category(1, "test");
-    private Todo validTodo = new Todo(1, title, content, category);
     private TodoDTO validTodoDTO = new TodoDTO(1, titleDTO, contentDTO, category);
 
-    private List<Todo> validTodos = List.of(validTodo);
     private List<TodoDTO> validTodoDTOs = List.of(validTodoDTO);
 
     @Test
