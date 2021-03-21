@@ -10,7 +10,7 @@
 	<artifactId>todolist</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>todolist</name>
-	<description>Demo project for Spring Boot</description>
+	<description>To-Do List API</description>
 	<packaging>war</packaging>
 	<properties>
 		<java.version>11</java.version>
@@ -91,13 +91,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<jvmArguments>-Xmx4096M</jvmArguments>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
 			</plugin>
 			<plugin>
 				<groupId>org.jacoco</groupId>
