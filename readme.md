@@ -61,6 +61,6 @@ _For help in [Choosing a license](https://choosealicense.com/)_
 
 ## Acknowledgments
 
-- **Boni García** - \*Selenium with JUnit 5\* - [bonigarcia](https://github.com/bonigarcia)
+- **Boni García** - _Selenium with JUnit 5_ - [bonigarcia](https://github.com/bonigarcia)
 - **Ed Reynolds** - _Other Contributions_ - [Edrz-96](https://github.com/Edrz-96)
 - **Morgan alsh** - _Other Contributions_ - [MrWalshyType2](https://github.com/MrWalshyType2)
