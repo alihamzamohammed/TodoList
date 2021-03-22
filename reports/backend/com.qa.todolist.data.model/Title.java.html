@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Title.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">todolist</a> &gt; <a href="index.source.html" class="el_package">com.qa.todolist.data.model</a> &gt; <span class="el_source">Title.java</span></div><h1>Title.java</h1><pre class="source lang-java linenums">package com.qa.todolist.data.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Title {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = &quot;title_id&quot;)
+    private int id;
+
+    @Column(name = &quot;title&quot;)
+    private String todoTitle;
+
+    public int getId() {
+<span class="fc" id="L21">        return this.id;</span>
+    }
+
+    public void setId(int id) {
+<span class="fc" id="L25">        this.id = id;</span>
+<span class="fc" id="L26">    }</span>
+
+    public String getTodoTitle() {
+<span class="fc" id="L29">        return this.todoTitle;</span>
+    }
+
+    public void setTodoTitle(String todoTitle) {
+<span class="fc" id="L33">        this.todoTitle = todoTitle;</span>
+<span class="fc" id="L34">    }</span>
+
+<span class="fc" id="L36">    public Title() {</span>
+<span class="fc" id="L37">    }</span>
+
+<span class="fc" id="L39">    public Title(int id, String todoTitle) {</span>
+<span class="fc" id="L40">        this.id = id;</span>
+<span class="fc" id="L41">        this.todoTitle = todoTitle;</span>
+<span class="fc" id="L42">    }</span>
+
+<span class="fc" id="L44">    public Title(String todoTitle) {</span>
+<span class="fc" id="L45">        this.todoTitle = todoTitle;</span>
+<span class="fc" id="L46">    }</span>
+
+    @Override
+    public String toString() {
+<span class="fc" id="L50">        return &quot;Title [todoTitle=&quot; + todoTitle + &quot;]&quot;;</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="fc" id="L55">        final int prime = 31;</span>
+<span class="fc" id="L56">        int result = 1;</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">        result = prime * result + ((todoTitle == null) ? 0 : todoTitle.hashCode());</span>
+<span class="fc" id="L58">        return result;</span>
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+<span class="fc bfc" id="L63" title="All 2 branches covered.">        if (this == obj)</span>
+<span class="fc" id="L64">            return true;</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        if (obj == null)</span>
+<span class="fc" id="L66">            return false;</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">        if (getClass() != obj.getClass())</span>
+<span class="fc" id="L68">            return false;</span>
+<span class="fc" id="L69">        Title other = (Title) obj;</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        if (todoTitle == null) {</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">            if (other.todoTitle != null)</span>
+<span class="fc" id="L72">                return false;</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        } else if (!todoTitle.equals(other.todoTitle))</span>
+<span class="fc" id="L74">            return false;</span>
+<span class="fc" id="L75">        return true;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

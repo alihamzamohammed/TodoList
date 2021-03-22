@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TodoService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">todolist</a> &gt; <a href="index.source.html" class="el_package">com.qa.todolist.service</a> &gt; <span class="el_source">TodoService.java</span></div><h1>TodoService.java</h1><pre class="source lang-java linenums">package com.qa.todolist.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import com.qa.todolist.data.model.Todo;
+import com.qa.todolist.data.repository.TodoRepository;
+import com.qa.todolist.dto.TodoDTO;
+import com.qa.todolist.exceptions.TodoItemNotFoundException;
+import com.qa.todolist.mapper.TodoMapper;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class TodoService {
+
+    private TodoRepository todoRepository;
+    private TodoMapper todoMapper;
+
+    @Autowired
+<span class="fc" id="L23">    public TodoService(TodoRepository todoRepository, TodoMapper todoMapper) {</span>
+
+<span class="fc" id="L25">        this.todoRepository = todoRepository;</span>
+<span class="fc" id="L26">        this.todoMapper = todoMapper;</span>
+<span class="fc" id="L27">    }</span>
+
+    public List&lt;TodoDTO&gt; readAllTodos() {
+<span class="fc" id="L30">        List&lt;Todo&gt; todos = todoRepository.findAll();</span>
+<span class="fc" id="L31">        List&lt;TodoDTO&gt; todoDTOs = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L32">        todos.forEach(todo -&gt; todoDTOs.add(todoMapper.mapToDTO(todo)));</span>
+<span class="fc" id="L33">        return todoDTOs;</span>
+    }
+
+    public TodoDTO readById(int id) {
+<span class="fc" id="L37">        Optional&lt;Todo&gt; todo = todoRepository.findById(id);</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if (todo.isPresent()) {</span>
+<span class="fc" id="L39">            return todoMapper.mapToDTO(todo.get());</span>
+        } else {
+<span class="fc" id="L41">            throw new TodoItemNotFoundException();</span>
+        }
+    }
+
+    public TodoDTO createTodo(Todo todo) {
+<span class="fc" id="L46">        return todoMapper.mapToDTO(todoRepository.save(todo));</span>
+    }
+
+    public TodoDTO updateTodo(int id, Todo todo) {
+<span class="fc" id="L50">        Optional&lt;Todo&gt; optional = todoRepository.findById(id);</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        if (optional.isPresent()) {</span>
+<span class="fc" id="L52">            Todo todoToUpdate = optional.get();</span>
+<span class="fc" id="L53">            todoToUpdate.setTitle(todo.getTitle());</span>
+<span class="fc" id="L54">            todoToUpdate.setContent(todo.getContent());</span>
+<span class="fc" id="L55">            todoToUpdate.setCategory(todo.getCategory());</span>
+<span class="fc" id="L56">            return todoMapper.mapToDTO(todoRepository.save(todoToUpdate));</span>
+        } else {
+<span class="fc" id="L58">            throw new TodoItemNotFoundException();</span>
+        }
+    }
+
+    public Boolean deleteTodo(int id) {
+<span class="fc bfc" id="L63" title="All 2 branches covered.">        if (todoRepository.existsById(id)) {</span>
+<span class="fc" id="L64">            todoRepository.deleteById(id);</span>
+        } else {
+<span class="fc" id="L66">            throw new TodoItemNotFoundException();</span>
+        }
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">        return !todoRepository.existsById(id);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

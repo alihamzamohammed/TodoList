@@ -1,36 +1,36 @@
-backend/HELP.md
-backend/target/
-backend/.mvn/
-!**/backend/src/main/**/target/
-!**/backend/src/test/**/target/
-backend/src/test/resources/reports/
+HELP.md
+target/
+.mvn/
+!**/src/main/**/target/
+!**/src/test/**/target/
+src/test/resources/reports/
 
 ### STS ###
-backend/.apt_generated
-backend/.classpath
-backend/.factorypath
-backend/.project
-backend/.settings
-backend/.springBeans
-backend/.sts4-cache
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
 
 ### IntelliJ IDEA ###
-backend/.idea
-backend/*.iws
-backend/*.iml
-backend/*.ipr
+.idea
+*.iws
+*.iml
+*.ipr
 
 ### NetBeans ###
-backend/nbproject/private/
-backend/nbbuild/
-backend/dist/
-backend/nbdist/
-backend/.nb-gradle/
-backend/build/
-backend/!**/src/main/**/build/
-backend/!**/src/test/**/build/
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
 
 ### VS Code ###
 .vscode/
-backend/mvnw
-backend/mvnw.cmd
+mvnw
+mvnw.cmd
